@@ -1,0 +1,3 @@
+/home/hugo/Escritorio/HoneYpot FTP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/hugo/Escritorio/HoneYpot FTP/cmake-build-debug/CMakeFiles/HoneYpot_FTP.dir
+/home/hugo/Escritorio/HoneYpot FTP/cmake-build-debug/CMakeFiles/edit_cache.dir
