@@ -1,6 +1,7 @@
 *.txt
 *.o
 *.exe
+tp
 cmake-build-debug/
 .idea/
 idea/
