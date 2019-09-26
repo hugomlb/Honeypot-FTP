@@ -18,7 +18,7 @@ class Server {
   public:
     Server();
 
-    void newClient();
+    static void newClient();
 
     void userLogin(const std::string& password);
 
@@ -28,13 +28,13 @@ class Server {
 
     void mkd(const std::string& aDirectoryName);
 
-    void rmd(std::string aDirectoryName);
+    void rmd(const std::string& aDirectoryName);
 
     void help();
 
     void quit();
 
-    void invalidCommand();
+    static void invalidCommand();
 
 };
 

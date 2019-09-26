@@ -16,10 +16,13 @@ class DirectorySet {
 
     bool isItDuplicate(const std::string& directoryName);
   public:
-
     void addDirectory(const std::string& directoryName);
 
     void removeDirectory(const std::string& directoryName);
+
+    bool isEmpty();
+
+
 };
 
 

@@ -22,8 +22,9 @@ void Server::invalidCommand() {
 void Server::list() {
   if (user.isLogged()) {
     std::cout << "150 Here comes the directory listing." << std::endl;
-    //IMPRIMIR LA LISTA DE DIRECTORIOS EN ORDEN ALFABETICO
-    std::cout << "drwxrwxrwx 0 1000 1000 4096 Sep 24 12:34 <nombreDelDirectorio>" << std::endl;
+    if (!directories.isEmpty()) {
+      std::cout << "drwxrwxrwx 0 1000 1000 4096 Sep 24 12:34 <nombreDelDirectorio>" << std::endl;
+    }
     std::cout << "226 Directory send OK." << std::endl;
   }
 }
@@ -39,12 +40,14 @@ void Server::mkd(const std::string& aDirectoryName) {
   }
 }
 
-void Server::rmd(std::string aDirectoryName) {
+void Server::rmd(const std::string& aDirectoryName) {
   if (user.isLogged()) {
-    //SI el directorio existe
-    std::cout << "250 Remove directory operation successful." << std::endl;
-    //SI EL DIRECTORIO NO EXISTE
-    std::cout << "550 Remove directory operation failed.";
+    try {
+      directories.removeDirectory(aDirectoryName);
+      std::cout << "250 Remove directory operation successful." << std::endl;
+    } catch (DirectorySetException &e) {
+      std::cout << "550 Remove directory operation failed.";
+    }
   }
 }
 

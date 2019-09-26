@@ -20,8 +20,11 @@ bool DirectorySet::isItDuplicate(const std::string& directoryName) {
   iterator = directories.find(directoryName);
   bool answer = false;
   if (iterator != directories.end()) {
-    std::cout << "YA hay" << std::endl;
     answer = true;
   }
   return answer;
+}
+
+bool DirectorySet::isEmpty() {
+  return directories.empty();
 }

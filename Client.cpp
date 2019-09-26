@@ -16,6 +16,10 @@ void Client::run() {
   while (command.compare("QUIT") != 0 ) {
     getline(std::cin, command);
     server.mkd(command);
+    server.list();
+    getline(std::cin, command);
+    server.rmd(command);
+    server.list();
   }
   server.quit();
 }
