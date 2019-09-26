@@ -8,7 +8,7 @@ class Command {
   public:
     virtual void execute() = 0;
 
-    void printMessage(std::string aMessage);
+    static void printMessage(const std::string& aMessage);
 };
 
 #endif

@@ -1,10 +1,11 @@
 #include "Server.h"
 #include "DirectorySetException.h"
-#include <iostream>
+#include "CommandRMD.h"
 #include "CommandWelcome.h"
 #include "CommandInvalid.h"
 #include "CommandQuit.h"
 #include "CommandList.h"
+#include "CommandMKD.h"
 
 Server::Server() : user("hugo", "hola") {
 }
@@ -32,23 +33,15 @@ void Server::list() {
 
 void Server::mkd(const std::string& aDirectoryName) {
   if (user.isLogged()) {
-    try {
-      directories.addDirectory(aDirectoryName);
-      std::cout << "257 " << aDirectoryName << " created" << std::endl;
-    } catch (DirectorySetException &e) {
-      std::cout << "550 Create directory operation failed." << std::endl;
-    }
+    CommandMKD command(aDirectoryName, &directories);
+    command.execute();
   }
 }
 
 void Server::rmd(const std::string& aDirectoryName) {
   if (user.isLogged()) {
-    try {
-      directories.removeDirectory(aDirectoryName);
-      std::cout << "250 Remove directory operation successful." << std::endl;
-    } catch (DirectorySetException &e) {
-      std::cout << "550 Remove directory operation failed.";
-    }
+    CommandRMD command(aDirectoryName, &directories);
+    command.execute();
   }
 }
 

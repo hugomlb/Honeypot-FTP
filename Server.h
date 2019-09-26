@@ -11,6 +11,10 @@ class Server {
    * en caso de faltar una clave es discrecion del desarrollador contemplar
    * ese caso. El archivo tiene un formato "clave=valor". preguntar por el orden de
    * este archivo
+   * PREGUNTAR:
+   *  Ejemplo de help
+   *  Cuestiones sobre el archivo que entra
+   *  Cuestiones de como es la comunicacion por sockets (del servidor al cliente)
    */
   private:
     User user;

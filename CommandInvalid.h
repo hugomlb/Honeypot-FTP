@@ -8,5 +8,4 @@ class CommandInvalid : public Command {
     void execute() override;
 };
 
-
 #endif
