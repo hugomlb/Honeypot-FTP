@@ -1,33 +1,32 @@
 #include "Server.h"
 #include "DirectorySetException.h"
 #include <iostream>
+#include "CommandWelcome.h"
+#include "CommandInvalid.h"
+#include "CommandQuit.h"
+#include "CommandList.h"
 
 Server::Server() : user("hugo", "hola") {
 }
 
-
 void Server::newClient() {
-  std::cout << "230 TallerFTP" << std::endl;
+  CommandWelcome command;
+  command.execute();
 }
 
 void Server::userLogin(const std::string& password) {
   user.login(password);
 }
 
-
 void Server::invalidCommand() {
-  std::cout << "500 Unknown command." << std::endl;
+  CommandInvalid command;
+  command.execute();
 }
 
 void Server::list() {
   if (user.isLogged()) {
-    std::cout << "150 Here comes the directory listing." << std::endl;
-    std::list<std::string> directoryList = directories.getDirectoryList();
-    std::list<std::string>::iterator iterator;
-    for (iterator = directoryList.begin(); iterator != directoryList.end(); iterator++) {
-      std::cout << "drwxrwxrwx 0 1000 1000 4096 Sep 24 12:34 " << *iterator << std::endl;
-    }
-    std::cout << "226 Directory send OK." << std::endl;
+    CommandList command(&directories);
+    command.execute();
   }
 }
 
@@ -54,5 +53,6 @@ void Server::rmd(const std::string& aDirectoryName) {
 }
 
 void Server::quit() {
-  std::cout << "221 Goodbye." << std::endl;
+  CommandQuit command;
+  command.execute();
 }

@@ -32,7 +32,7 @@ class Server {
 
     void help();
 
-    void quit();
+    static void quit();
 
     static void invalidCommand();
 
