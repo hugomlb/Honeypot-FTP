@@ -3,16 +3,23 @@
 
 #include <set>
 #include <string>
-
+/*De forma standar toma un orden tipo
+ * A
+ * B
+ * a
+ * preguntar si es correcto
+ */
 class DirectorySet {
   private:
     std::set<std::string> directories;
+    std::set<std::string>::iterator iterator;
+
+    bool isItDuplicate(const std::string& directoryName);
   public:
-    DirectorySet();
 
-    void addDirectory();
+    void addDirectory(const std::string& directoryName);
 
-    void removeDirectory();
+    void removeDirectory(const std::string& directoryName);
 };
 
 

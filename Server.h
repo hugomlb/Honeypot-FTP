@@ -3,6 +3,7 @@
 
 #include <string>
 #include "User.h"
+#include "DirectorySet.h"
 class Server {
   //Al recibir una 'q' de entrada standar, el servidor debe cerrarse
   /* El servidor debe leer la configuracion y los mensajes a retornar de
@@ -13,6 +14,7 @@ class Server {
    */
   private:
     User user;
+    DirectorySet directories;
   public:
     Server();
 
@@ -24,7 +26,7 @@ class Server {
 
     void list();
 
-    void mkd(std::string aDirectoryName);
+    void mkd(const std::string& aDirectoryName);
 
     void rmd(std::string aDirectoryName);
 

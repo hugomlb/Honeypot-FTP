@@ -1,4 +1,5 @@
 #include "Server.h"
+#include "DirectorySetException.h"
 #include <iostream>
 
 Server::Server() : user("hugo", "hola") {
@@ -27,10 +28,14 @@ void Server::list() {
   }
 }
 
-void Server::mkd(std::string aDirectoryName) {
+void Server::mkd(const std::string& aDirectoryName) {
   if (user.isLogged()) {
-    //Si el directorio ya esta creado imprimir "550 Create directory operation failed."
-    std::cout << "257 " << aDirectoryName << "created" << std::endl;
+    try {
+      directories.addDirectory(aDirectoryName);
+      std::cout << "257 " << aDirectoryName << " created" << std::endl;
+    } catch (DirectorySetException &e) {
+      std::cout << "550 Create directory operation failed." << std::endl;
+    }
   }
 }
 
