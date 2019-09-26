@@ -22,8 +22,10 @@ void Server::invalidCommand() {
 void Server::list() {
   if (user.isLogged()) {
     std::cout << "150 Here comes the directory listing." << std::endl;
-    if (!directories.isEmpty()) {
-      std::cout << "drwxrwxrwx 0 1000 1000 4096 Sep 24 12:34 <nombreDelDirectorio>" << std::endl;
+    std::list<std::string> directoryList = directories.getDirectoryList();
+    std::list<std::string>::iterator iterator;
+    for (iterator = directoryList.begin(); iterator != directoryList.end(); iterator++) {
+      std::cout << "drwxrwxrwx 0 1000 1000 4096 Sep 24 12:34 " << *iterator << std::endl;
     }
     std::cout << "226 Directory send OK." << std::endl;
   }

@@ -3,6 +3,7 @@
 
 #include <set>
 #include <string>
+#include <list>
 /*De forma standar toma un orden tipo
  * A
  * B
@@ -20,9 +21,7 @@ class DirectorySet {
 
     void removeDirectory(const std::string& directoryName);
 
-    bool isEmpty();
-
-
+    std::list<std::string> getDirectoryList();
 };
 
 

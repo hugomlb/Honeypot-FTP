@@ -25,6 +25,10 @@ bool DirectorySet::isItDuplicate(const std::string& directoryName) {
   return answer;
 }
 
-bool DirectorySet::isEmpty() {
-  return directories.empty();
+std::list<std::string> DirectorySet::getDirectoryList() {
+  std::list<std::string> listOfDirectories;
+  for (iterator = directories.begin(); iterator != directories.end(); iterator++) {
+    listOfDirectories.push_back(*iterator);
+  }
+  return listOfDirectories;
 }
