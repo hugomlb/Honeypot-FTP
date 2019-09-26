@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/HoneYpot_FTP.dir/main.cpp.o  -o HoneYpot_FTP 
