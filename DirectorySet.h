@@ -4,12 +4,7 @@
 #include <set>
 #include <string>
 #include <list>
-/*De forma standar toma un orden tipo
- * A
- * B
- * a
- * preguntar si es correcto
- */
+
 class DirectorySet {
   private:
     std::set<std::string> directories;

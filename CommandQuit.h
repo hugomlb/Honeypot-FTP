@@ -1,5 +1,5 @@
-#ifndef _COMMANDQUIT_H_
-#define _COMMANDQUIT_H_
+#ifndef _COMMAND_QUIT_H_
+#define _COMMAND_QUIT_H_
 
 #include "Command.h"
 

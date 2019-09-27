@@ -1,5 +1,5 @@
-#ifndef _COMMANDMKD_H_
-#define _COMMANDMKD_H_
+#ifndef _COMMAND_MKD_H_
+#define _COMMAND_MKD_H_
 
 #include "Command.h"
 #include "DirectorySet.h"
