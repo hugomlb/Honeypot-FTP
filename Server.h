@@ -46,7 +46,7 @@ class Server {
 
     static void newClient();
 
-    void executeCommand(std::string command);
+    void executeCommand(const std::string& command);
 
     ~Server();
 };

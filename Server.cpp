@@ -19,10 +19,6 @@ void Server::newClient() {
   command.execute("");
 }
 
-void Server::userLogin(const std::string& password) {
-  user.login(password);
-}
-
 /*
 void Server::list() {
   if (user.isLogged()) {
@@ -46,7 +42,7 @@ void Server::rmd(const std::string& aDirectoryName) {
   }
 }
 */
-void Server::executeCommand(std::string command) {
+void Server::executeCommand(const std::string& command) {
   std::string commandCode;
   std::string commandArgument;
   std::istringstream test(command);
@@ -56,7 +52,14 @@ void Server::executeCommand(std::string command) {
   } else {
     commandCode = command;
   }
-
+  user.isLogged();
+  user.enterPassword("hola");
+  user.isLogged();
+  user.enterUserName("hugo");
+  user.lastCommandWas("USER");
+  user.enterPassword("hola");
+  user.isLogged();
+  /*
   auto iterator = commandMap.find(commandCode);
   if (iterator != commandMap.end()) {
     iterator -> second -> execute(commandArgument);
@@ -64,6 +67,7 @@ void Server::executeCommand(std::string command) {
     CommandInvalid commandInvalid;
     commandInvalid.execute("");
   }
+   */
 }
 
 Server::~Server() {

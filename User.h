@@ -4,13 +4,19 @@
 
 class User {
   private:
-    bool loginValid;
+    bool validUserName;
+    bool validPassword;
+    bool wasLastCommandUser;
     std::string name;
     std::string password;
   public:
     User(std::string userName, std::string password);
 
-    void login(const std::string& aPassword);
+    void enterPassword(const std::string& aPassword);
+
+    void enterUserName(const std::string& aUserName);
+
+    void lastCommandWas(const std::string& aCommandCode);
 
     bool isLogged();
 };
