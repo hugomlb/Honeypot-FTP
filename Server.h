@@ -11,6 +11,8 @@
 #include "CommandQuit.h"
 #include "CommandMKD.h"
 #include "CommandRMD.h"
+#include "CommandPass.h"
+#include "CommandUser.h"
 
 class Server {
   //Al recibir una 'q' de entrada standar, el servidor debe cerrarse
@@ -32,8 +34,8 @@ class Server {
     CommandQuit quit;
     CommandMKD make;
     CommandRMD remove;
-
-    void userLogin(const std::string& password);
+    CommandUser userLog;
+    CommandPass passLog;
 
     void syst(); //Consultar
 

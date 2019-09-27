@@ -1,6 +1,7 @@
 #ifndef _USER_H_
 #define _USER_H_
 
+#include <string>
 
 class User {
   private:
@@ -12,7 +13,7 @@ class User {
   public:
     User(std::string userName, std::string password);
 
-    void enterPassword(const std::string& aPassword);
+    int enterPassword(const std::string& aPassword);
 
     void enterUserName(const std::string& aUserName);
 

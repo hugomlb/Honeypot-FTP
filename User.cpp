@@ -3,6 +3,9 @@
 #include <iostream>
 #include "User.h"
 
+#define LOGGED 0
+#define NOT_LOGGED -1
+
 User::User(std::string userName, std::string password) {
   validPassword = false;
   validUserName = false;
@@ -20,12 +23,13 @@ bool User::isLogged() {
   return answer;
 }
 
-void User::enterPassword(const std::string &aPassword) {
-  if (aPassword == password && wasLastCommandUser) {
+int User::enterPassword(const std::string &aPassword) {
+  if ((aPassword == password) && wasLastCommandUser && validUserName) {
     validPassword = true;
-    std::cout << "230 Login successful." << std::endl;
+    return  LOGGED;
   } else {
-    std::cout << "530 Login incorrect." << std::endl;
+    validUserName = false;
+    return NOT_LOGGED;
   }
 }
 
@@ -33,7 +37,6 @@ void User::enterUserName(const std::string &aUserName) {
   if (aUserName == name) {
     validUserName = true;
   }
-  std::cout << "331 Please specify the password." << std::endl;
 }
 
 void User::lastCommandWas(const std::string& aCommandCode) {

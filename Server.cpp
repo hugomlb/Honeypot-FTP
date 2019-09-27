@@ -6,12 +6,14 @@
 #include "CommandInvalid.h"
 #include "CommandMKD.h"
 
-Server::Server() : user("hugo", "hola"), list(&directories), make (&directories)
-  , remove(&directories){
+Server::Server() : user("hugo", "hola"), list(&directories), make (&directories),
+    remove(&directories), userLog(&user), passLog(&user) {
   commandMap["LIST"] = &list;
   commandMap["QUIT"] = &quit;
   commandMap["MKD"] = &make;
   commandMap["RMD"] = &remove;
+  commandMap["USER"] = &userLog;
+  commandMap ["PASS"] = &passLog;
 }
 
 void Server::newClient() {
@@ -45,21 +47,14 @@ void Server::rmd(const std::string& aDirectoryName) {
 void Server::executeCommand(const std::string& command) {
   std::string commandCode;
   std::string commandArgument;
-  std::istringstream test(command);
   if (command.find_first_of(' ') != std::string::npos) {
+    std::istringstream test(command);
     getline(test, commandCode, ' ');
     getline(test, commandArgument);
   } else {
     commandCode = command;
   }
-  user.isLogged();
-  user.enterPassword("hola");
-  user.isLogged();
-  user.enterUserName("hugo");
-  user.lastCommandWas("USER");
-  user.enterPassword("hola");
-  user.isLogged();
-  /*
+
   auto iterator = commandMap.find(commandCode);
   if (iterator != commandMap.end()) {
     iterator -> second -> execute(commandArgument);
@@ -67,7 +62,7 @@ void Server::executeCommand(const std::string& command) {
     CommandInvalid commandInvalid;
     commandInvalid.execute("");
   }
-   */
+  user.lastCommandWas(commandCode);
 }
 
 Server::~Server() {
