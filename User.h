@@ -2,6 +2,7 @@
 #define _USER_H_
 
 #include <string>
+#include "Command.h"
 
 class User {
   private:
@@ -19,7 +20,7 @@ class User {
 
     void lastCommandWas(const std::string& aCommandCode);
 
-    bool isLogged();
+    bool isLogged(Command* aCommand);
 };
 
 

@@ -3,16 +3,17 @@
 
 #include "Command.h"
 #include "DirectorySet.h"
+#include "User.h"
 #include <string>
 
 class CommandMKD: public Command {
   private:
-    std::string directoryName;
     DirectorySet* directories;
+    User* user;
 
-    void execute();
+    void makeDirectory(const std::string& aDirectoryName);
   public:
-    explicit CommandMKD(DirectorySet* directorySet);
+    explicit CommandMKD(DirectorySet* directorySet, User* aUser);
 
     void execute(std::string argument) override;
 };

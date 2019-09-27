@@ -14,10 +14,10 @@ User::User(std::string userName, std::string password) {
   this -> password = std::move(password);
 }
 
-bool User::isLogged() {
+bool User::isLogged(Command* command) {
   bool answer = true;
   if (!(validUserName && validPassword)) {
-    std::cout << "530 Please login with USER and PASS." << std::endl;
+    command -> askForLoggin();
     answer = false;
   }
   return answer;

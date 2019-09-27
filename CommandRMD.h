@@ -3,18 +3,19 @@
 
 
 #include <string>
+#include "User.h"
 #include "DirectorySet.h"
 #include "Command.h"
 
 class CommandRMD: public Command {
   private:
-    std::string directoryName;
     DirectorySet* directories;
+    User* user;
 
-    void execute();
+    void removeDirectory(const std::string& aDirectoryName);
 
   public:
-    explicit CommandRMD(DirectorySet* directorySet);
+    explicit CommandRMD(DirectorySet* directorySet, User* aUser);
 
     void execute(std::string argument) override ;
 };

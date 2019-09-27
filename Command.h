@@ -10,6 +10,8 @@ class Command {
 
     static void printMessage(const std::string& aMessage);
 
+    static void askForLoggin();
+
     ~Command() = default;
 };
 

@@ -1,13 +1,12 @@
 #include <iostream>
 #include <sstream>
 #include "Server.h"
-#include "CommandRMD.h"
 #include "CommandWelcome.h"
 #include "CommandInvalid.h"
-#include "CommandMKD.h"
 
-Server::Server() : user("hugo", "hola"), list(&directories), make (&directories),
-    remove(&directories), userLog(&user), passLog(&user) {
+
+Server::Server() : user("hugo", "hola"), list(&directories, &user), make(&directories, &user),
+    remove(&directories, &user), userLog(&user), passLog(&user) {
   commandMap["LIST"] = &list;
   commandMap["QUIT"] = &quit;
   commandMap["MKD"] = &make;
@@ -21,29 +20,6 @@ void Server::newClient() {
   command.execute("");
 }
 
-/*
-void Server::list() {
-  if (user.isLogged()) {
-    CommandList command(&directories);
-    command.execute();
-  }
-}
-*/
-/*
-void Server::mkd(const std::string& aDirectoryName) {
-  if (user.isLogged()) {
-    CommandMKD command(&directories);
-    command.execute(aDirectoryName);
-  }
-}
-
-void Server::rmd(const std::string& aDirectoryName) {
-  if (user.isLogged()) {
-    CommandRMD command(&directories);
-    command.execute(aDirectoryName);
-  }
-}
-*/
 void Server::executeCommand(const std::string& command) {
   std::string commandCode;
   std::string commandArgument;

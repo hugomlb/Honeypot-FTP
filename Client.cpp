@@ -10,3 +10,4 @@ void Client::run() {
     server.executeCommand(command);
   }
 }
+//PAra la parte de comunicacion fijarse que se esten mandando los \n
