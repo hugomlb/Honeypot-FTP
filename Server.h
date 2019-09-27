@@ -1,9 +1,17 @@
-#ifndef HONEYPOT_FTP_SERVER_H
-#define HONEYPOT_FTP_SERVER_H
+#ifndef _SERVER_H_
+#define _SERVER_H_
 
 #include <string>
+#include <unordered_map>
 #include "User.h"
 #include "DirectorySet.h"
+#include "Command.h"
+#include "CommandWelcome.h"
+#include "CommandList.h"
+#include "CommandQuit.h"
+#include "CommandMKD.h"
+#include "CommandRMD.h"
+
 class Server {
   //Al recibir una 'q' de entrada standar, el servidor debe cerrarse
   /* El servidor debe leer la configuracion y los mensajes a retornar de
@@ -19,27 +27,28 @@ class Server {
   private:
     User user;
     DirectorySet directories;
+    std::unordered_map<std::string, Command*> commandMap;
+    CommandList list;
+    CommandQuit quit;
+    CommandMKD make;
+    CommandRMD remove;
+
+    void userLogin(const std::string& password);
+
+    void syst(); //Consultar
+
+    void pwd(); //Hacer
+
+    void help(); //Consultar
+
   public:
     Server();
 
     static void newClient();
 
-    void userLogin(const std::string& password);
+    void executeCommand(std::string command);
 
-    void syst();
-
-    void list();
-
-    void mkd(const std::string& aDirectoryName);
-
-    void rmd(const std::string& aDirectoryName);
-
-    void help();
-
-    static void quit();
-
-    static void invalidCommand();
-
+    ~Server();
 };
 
 

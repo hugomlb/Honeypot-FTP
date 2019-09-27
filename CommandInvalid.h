@@ -5,7 +5,7 @@
 
 class CommandInvalid : public Command {
   public:
-    void execute() override;
+    void execute(std::string argument) override;
 };
 
 #endif

@@ -1,12 +1,17 @@
 #include "CommandRMD.h"
-
-#include <utility>
 #include "DirectorySetException.h"
 
-CommandRMD::CommandRMD(std::string aDirectoryName, DirectorySet *directorySet) {
-  directoryName = std::move(aDirectoryName);
+CommandRMD::CommandRMD(DirectorySet *directorySet) {
   directories = directorySet;
 }
+
+void CommandRMD::execute(std::string argument) {
+  if(!argument.empty()) {
+    directoryName = argument;
+    execute();
+  }
+}
+
 void CommandRMD::execute() {
   try {
     directories -> removeDirectory(directoryName);

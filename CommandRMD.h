@@ -11,10 +11,12 @@ class CommandRMD: public Command {
     std::string directoryName;
     DirectorySet* directories;
 
-  public:
-    explicit CommandRMD(std::string aDirectoryName, DirectorySet* directorySet);
+    void execute();
 
-    void execute() override ;
+  public:
+    explicit CommandRMD(DirectorySet* directorySet);
+
+    void execute(std::string argument) override ;
 };
 
 

@@ -1,10 +1,15 @@
 #include "CommandMKD.h"
 #include "DirectorySetException.h"
-#include <utility>
 
-CommandMKD::CommandMKD(std::string aDirectoryName, DirectorySet* directorySet) {
-  directoryName = std::move(aDirectoryName);
+CommandMKD::CommandMKD(DirectorySet* directorySet) {
   directories = directorySet;
+}
+
+void CommandMKD::execute(std::string argument) {
+  if (!argument.empty()) {
+    directoryName = argument;
+    execute();
+  }
 }
 
 void CommandMKD::execute() {

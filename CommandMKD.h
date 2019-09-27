@@ -9,10 +9,12 @@ class CommandMKD: public Command {
   private:
     std::string directoryName;
     DirectorySet* directories;
-  public:
-    explicit CommandMKD(std::string aDirectoryName, DirectorySet* directorySet);
 
-    void execute() override;
+    void execute();
+  public:
+    explicit CommandMKD(DirectorySet* directorySet);
+
+    void execute(std::string argument) override;
 };
 
 

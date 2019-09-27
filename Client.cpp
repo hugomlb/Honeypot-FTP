@@ -4,22 +4,9 @@
 void Client::run() {
   Server server;
   server.newClient();
-  std::string command;
-  getline(std::cin, command);
-  std::cout << "331 Please specify the password." << std::endl;
-  getline(std::cin, command);
-  if (command.compare(0, 5, "PASS ") == 0) {
-    server.userLogin(command.substr(5, std::string::npos));
-  } else {
-    server.invalidCommand();
-  }
+  std::string command = " ";
   while (command.compare("QUIT") != 0 ) {
     getline(std::cin, command);
-    server.mkd(command);
-    server.list();
-    getline(std::cin, command);
-    server.rmd(command);
-    server.list();
+    server.executeCommand(command);
   }
-  server.quit();
 }

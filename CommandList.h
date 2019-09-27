@@ -10,7 +10,7 @@ class CommandList: public Command {
   public:
     explicit CommandList(DirectorySet* directorySet);
 
-    void execute() override;
+    void execute(std::string argument) override;
 };
 
 
