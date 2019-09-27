@@ -19,8 +19,7 @@ class Server {
   /* El servidor debe leer la configuracion y los mensajes a retornar de
    * un archivo. NO se valida que se encuentren todas las claves necesarias,
    * en caso de faltar una clave es discrecion del desarrollador contemplar
-   * ese caso. El archivo tiene un formato "clave=valor". preguntar por el orden de
-   * este archivo
+   * ese caso. El archivo tiene un formato "clave=valor".
    * PREGUNTAR:
    *  Ejemplo de help
    *  Cuestiones sobre el archivo que entra
@@ -37,11 +36,7 @@ class Server {
     CommandUser userLog;
     CommandPass passLog;
 
-    void syst(); //Consultar
-
-    void pwd(); //Hacer
-
-    void help(); //Consultar
+   // void help(); //Consultar
 
   public:
     Server();
@@ -52,6 +47,5 @@ class Server {
 
     ~Server();
 };
-
 
 #endif
