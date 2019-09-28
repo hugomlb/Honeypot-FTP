@@ -12,53 +12,61 @@ SocketPassive::SocketPassive() {
 
 void SocketPassive::bind() {
   struct addrinfo hints;
-  struct addrinfo *ptr, *rst;
-  bool binded = false;
+  struct addrinfo *rst;
   memset(&hints, 0, sizeof(struct addrinfo));
   hints.ai_family = AF_INET;
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = AI_PASSIVE;
-  int errCheck = getaddrinfo(NULL, "7777", &hints, &rst); //SERVICIO HARCODEADO*****************
-  //leer man de getaddrinfo
-  //RECORRER LA LISTA QUE DA GETADDRINFO PARA OBTENER EL FD
+  int errCheck = getaddrinfo(nullptr, "7777", &hints, &rst); //SERVICIO HARCODEADO*****************
+  //leer el man de getaddrinfo
   if (errCheck != 0) {
     printf("Error in getaddrinfo: %s\n", gai_strerror(errCheck));
   }
-  int aFd = socket(rst -> ai_family, rst -> ai_socktype, rst -> ai_protocol);
-  if (aFd == -1) {
-    printf("Error: %s\n", strerror(errno));
-  }
-  int val = 1;
-  errCheck = setsockopt(aFd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
-  if (errCheck == -1) {
-    printf("Error: %s\n", strerror(errno));
-    close(aFd);
-  }
-  fd = aFd;
+  fd = getBind(rst);
+  freeaddrinfo(rst);
+}
+
+int SocketPassive::getBind(struct addrinfo *rst) {
+  int aFd = -1;
+  bool binded = false;
+  struct addrinfo *ptr;
   for (ptr = rst; ptr != nullptr && !binded; ptr = ptr -> ai_next) {
-    errCheck = ::bind(fd, ptr -> ai_addr, ptr -> ai_addrlen);
-    //leer man de bind
+    aFd = socket(ptr -> ai_family, ptr -> ai_socktype, ptr -> ai_protocol);
+    if (aFd == -1) {
+      printf("Error: %s\n", strerror(errno));
+    }
+    int val = 1;
+    int errCheck = setsockopt(aFd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
     if (errCheck == -1) {
       printf("Error: %s\n", strerror(errno));
-      close(errCheck);
+      close(aFd);
+    }
+    errCheck = ::bind(aFd, ptr -> ai_addr, ptr -> ai_addrlen);
+    if (errCheck == -1) {
+      printf("Error: %s\n", strerror(errno));
+      close(aFd);
     }
     binded = (errCheck != -1);
   }
-  freeaddrinfo(rst);
+  return aFd;
 }
 
 void SocketPassive::listen() {
   int errCheck = ::listen(fd, 1);
-  //leer man de listen
   if (errCheck == -1) {
     printf("Error: %s\n", strerror(errno));
   }
 }
 
 void SocketPassive::acceptClient() {
-  fd = accept(fd, NULL, NULL); //CREAR Y DEVOLVER POR MVSEM UN SOCKETPEER
+  fd = accept(fd, nullptr, nullptr); //CREAR Y DEVOLVER POR MVSEM UN SOCKETPEER
   // leer man de accept
   if (fd == -1) {
     printf("Error: %s\n", strerror(errno));
   }
+}
+
+SocketPassive::~SocketPassive() {
+  shutdown(fd, SHUT_RDWR);
+  close(fd);
 }
