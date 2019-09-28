@@ -1,6 +1,7 @@
 #include "CommandUser.h"
 
-CommandUser::CommandUser(User* aUser, ServerConfiguration* configuration) {
+CommandUser::CommandUser(User* aUser, ServerConfiguration* configuration):
+    Command(configuration){
   user = aUser;
   passRequired = configuration -> getValueOf("passRequired");
 }

@@ -1,6 +1,7 @@
 #include "CommandInvalid.h"
 
-CommandInvalid::CommandInvalid(ServerConfiguration *configuration) {
+CommandInvalid::CommandInvalid(ServerConfiguration *configuration):
+    Command(configuration) {
   unknownCommand = configuration -> getValueOf("unknownCommand");
 }
 

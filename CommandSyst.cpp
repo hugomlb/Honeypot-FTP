@@ -2,7 +2,8 @@
 #include "CommandInvalid.h"
 #include "ServerConfiguration.h"
 
-CommandSyst::CommandSyst(User* aUser, ServerConfiguration* configuration) {
+CommandSyst::CommandSyst(User* aUser, ServerConfiguration* configuration):
+    Command(configuration){
   user = aUser;
   systemInfo = configuration -> getValueOf("systemInfo");
 }
@@ -10,9 +11,6 @@ CommandSyst::CommandSyst(User* aUser, ServerConfiguration* configuration) {
 void CommandSyst::execute(std::string argument) {
   if (argument.empty()) {
     systemInformation();
-  } else {
-    /*CommandInvalid commandInvalid;
-    commandInvalid.execute("");*/
   }
 }
 

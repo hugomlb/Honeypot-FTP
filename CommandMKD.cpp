@@ -3,7 +3,7 @@
 #include "CommandInvalid.h"
 
 CommandMKD::CommandMKD(DirectorySet* directorySet, User* aUser,
-    ServerConfiguration* configuration) {
+    ServerConfiguration* configuration): Command(configuration) {
   directories = directorySet;
   user = aUser;
   mkdSuccess = configuration -> getValueOf("mkdSuccess");
@@ -13,9 +13,6 @@ CommandMKD::CommandMKD(DirectorySet* directorySet, User* aUser,
 void CommandMKD::execute(std::string argument) {
   if (!argument.empty()) {
     makeDirectory(argument);
-  } else {
-    /*CommandInvalid commandInvalid;
-    commandInvalid.execute("");*/
   }
 }
 

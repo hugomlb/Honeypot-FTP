@@ -3,14 +3,19 @@
 
 
 #include <string>
+#include "ServerConfiguration.h"
 
 class Command {
+  private:
+    std::string clientNotLogged;
   public:
+    explicit Command(ServerConfiguration* configuration);
+
     virtual void execute(std::string argument) = 0;
 
     static void printMessage(const std::string& aMessage);
 
-    static void askForLoggin();
+    void askForLogin();
 
     ~Command() = default;
 };

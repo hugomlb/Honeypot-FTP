@@ -1,6 +1,7 @@
 #include "CommandWelcome.h"
 
-CommandWelcome::CommandWelcome(ServerConfiguration *configuration) {
+CommandWelcome::CommandWelcome(ServerConfiguration *configuration):
+    Command(configuration) {
   newClient = configuration -> getValueOf("newClient");
 }
 

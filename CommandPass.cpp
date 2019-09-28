@@ -3,7 +3,8 @@
 #define LOGGED 0
 #define NOT_LOGGED -1
 
-CommandPass::CommandPass(User *aUser, ServerConfiguration* configuration) {
+CommandPass::CommandPass(User *aUser, ServerConfiguration* configuration):
+    Command(configuration){
   user = aUser;
   loginSuccess = configuration -> getValueOf("loginSuccess");
   loginFailed = configuration -> getValueOf("loginFailed");

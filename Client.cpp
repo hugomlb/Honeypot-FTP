@@ -4,7 +4,7 @@
 void Client::run() {
   Server server;
   std::string command = " ";
-  while (command.compare("QUIT") != 0 ) {
+  while (command != "QUIT" ) {
     getline(std::cin, command);
     server.executeCommand(command);
   }

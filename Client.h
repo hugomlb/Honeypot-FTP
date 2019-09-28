@@ -5,7 +5,7 @@
 
 class Client {
   public:
-    void run();
+    static void run();
 };
 
 

@@ -2,7 +2,7 @@
 #include "CommandInvalid.h"
 
 CommandList::CommandList(DirectorySet *directorySet, User* aUser,
-    ServerConfiguration* configuration) {
+    ServerConfiguration* configuration): Command(configuration) {
   directories = directorySet;
   user = aUser;
   listBegin = configuration -> getValueOf("listBegin");
@@ -12,9 +12,6 @@ CommandList::CommandList(DirectorySet *directorySet, User* aUser,
 void CommandList::execute(std::string argument) {
   if (argument.empty()) {
     list();
-  } else {
-    /*CommandInvalid commandInvalid;
-    commandInvalid.execute("");*/
   }
 }
 

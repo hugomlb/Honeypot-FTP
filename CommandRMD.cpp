@@ -3,7 +3,7 @@
 #include "CommandInvalid.h"
 
 CommandRMD::CommandRMD(DirectorySet* directorySet, User* aUser,
-                       ServerConfiguration* configuration) {
+    ServerConfiguration* configuration): Command(configuration) {
   directories = directorySet;
   user = aUser;
   rmdSuccess = configuration -> getValueOf("rmdSuccess");
@@ -13,9 +13,6 @@ CommandRMD::CommandRMD(DirectorySet* directorySet, User* aUser,
 void CommandRMD::execute(std::string argument) {
   if(!argument.empty()) {
     removeDirectory(argument);
-  } else{
-    /*CommandInvalid commandInvalid;
-    commandInvalid.execute("");*/
   }
 }
 
