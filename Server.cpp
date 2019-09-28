@@ -4,12 +4,8 @@
 #include "CommandWelcome.h"
 #include "Command.h"
 
-Server::Server() : user("hugo", "hola"), commands(&user, &directories){
-
-}
-
-void Server::newClient() {
-  CommandWelcome command;
+Server::Server() : user("hugo", "hola"), commands(&user, &directories, &configuration){
+  CommandWelcome command(&configuration);
   command.execute("");
 }
 

@@ -16,5 +16,11 @@ ServerConfiguration::ServerConfiguration() {
 }
 
 std::string ServerConfiguration::getValueOf(const std::string& key) {
-  return configuration[key];
+  auto iterator = configuration.find(key);
+  if (iterator != configuration.end()) {
+    return configuration[key];
+  } else {
+    return std::string("Unsupported Message");
+  }
 }
+

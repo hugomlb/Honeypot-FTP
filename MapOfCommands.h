@@ -13,21 +13,24 @@
 #include "ServerConfiguration.h"
 #include "CommandSyst.h"
 #include "CommandPWD.h"
+#include "CommandInvalid.h"
 
 class MapOfCommands {
   private:
     std::unordered_map<std::string, Command*> commandMap;
     CommandList list;
-    CommandQuit quit;
     CommandMKD make;
     CommandRMD remove;
     CommandUser user;
     CommandPass pass;
     CommandSyst syst;
     CommandPWD currentDirectory;
+    CommandQuit quit;
+    CommandInvalid invalid;
 
   public:
-    MapOfCommands(User* aUser, DirectorySet* directorySet);
+    MapOfCommands(User* aUser, DirectorySet* directorySet,
+        ServerConfiguration* configuration);
 
     void findAndExecute(const std::string& commandCode, std::string commandArgument);
 };

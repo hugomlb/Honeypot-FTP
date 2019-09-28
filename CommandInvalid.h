@@ -2,9 +2,13 @@
 #define _COMMAND_INVALID_H_
 
 #include "Command.h"
+#include "ServerConfiguration.h"
 
 class CommandInvalid : public Command {
+  private:
+    std::string unknownCommand;
   public:
+    CommandInvalid(ServerConfiguration* configuration);
     void execute(std::string argument) override;
 };
 

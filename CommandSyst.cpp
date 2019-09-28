@@ -1,21 +1,23 @@
 #include "CommandSyst.h"
 #include "CommandInvalid.h"
+#include "ServerConfiguration.h"
 
-CommandSyst::CommandSyst(User *aUser) {
+CommandSyst::CommandSyst(User* aUser, ServerConfiguration* configuration) {
   user = aUser;
+  systemInfo = configuration -> getValueOf("systemInfo");
 }
 
 void CommandSyst::execute(std::string argument) {
   if (argument.empty()) {
-    systemInfo();
+    systemInformation();
   } else {
-    CommandInvalid commandInvalid;
-    commandInvalid.execute("");
+    /*CommandInvalid commandInvalid;
+    commandInvalid.execute("");*/
   }
 }
 
-void CommandSyst::systemInfo() {
+void CommandSyst::systemInformation() {
   if (user -> isLogged(this)) {
-    printMessage("215 UNIX Type: L8");
+    printMessage("215 " + systemInfo);
   }
 }

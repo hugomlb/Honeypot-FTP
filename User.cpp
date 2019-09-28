@@ -1,6 +1,5 @@
 #include <string>
 #include <utility>
-#include <iostream>
 #include "User.h"
 
 #define LOGGED 0

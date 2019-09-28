@@ -3,8 +3,10 @@
 #include <utility>
 #include "CommandInvalid.h"
 
-MapOfCommands::MapOfCommands(User *aUser, DirectorySet *directories): list(directories, aUser), make(directories, aUser),
-    remove(directories, aUser), user(aUser), pass(aUser), syst(aUser), currentDirectory(aUser){
+MapOfCommands::MapOfCommands(User *aUser, DirectorySet *directories, ServerConfiguration* configuration):
+list(directories, aUser, configuration), make(directories, aUser, configuration),
+remove(directories,aUser, configuration), user(aUser, configuration), pass(aUser, configuration), syst(aUser, configuration),
+currentDirectory(aUser, configuration), quit(configuration), invalid(configuration) {
   commandMap["LIST"] = &list;
   commandMap["QUIT"] = &quit;
   commandMap["MKD"] = &make;
@@ -13,6 +15,8 @@ MapOfCommands::MapOfCommands(User *aUser, DirectorySet *directories): list(direc
   commandMap["PASS"] = &pass;
   commandMap["PWD"] = &currentDirectory;
   commandMap["SYST"] = &syst;
+  commandMap["INVALID"] = &invalid;
+
 }
 
 void MapOfCommands::findAndExecute(const std::string& commandCode,
@@ -21,7 +25,7 @@ void MapOfCommands::findAndExecute(const std::string& commandCode,
   if (iterator != commandMap.end()) {
     iterator -> second -> execute(std::move(commandArgument));
   } else {
-    CommandInvalid commandInvalid;
-    commandInvalid.execute("");
+    iterator = commandMap.find("INVALID");
+    iterator -> second -> execute("");
   }
 }

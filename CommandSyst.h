@@ -3,14 +3,15 @@
 
 #include "Command.h"
 #include "User.h"
-
+#include "ServerConfiguration.h"
 class CommandSyst: public Command {
   private:
     User* user;
+    std::string systemInfo;
 
-    void systemInfo();
+    void systemInformation();
   public:
-    explicit CommandSyst(User* aUser);
+    explicit CommandSyst(User* aUser, ServerConfiguration* configuration);
 
     void execute(std::string argument) override;
 };

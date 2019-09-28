@@ -3,8 +3,10 @@
 #define LOGGED 0
 #define NOT_LOGGED -1
 
-CommandPass::CommandPass(User *aUser) {
+CommandPass::CommandPass(User *aUser, ServerConfiguration* configuration) {
   user = aUser;
+  loginSuccess = configuration -> getValueOf("loginSuccess");
+  loginFailed = configuration -> getValueOf("loginFailed");
 }
 
 void CommandPass::execute(std::string argument) {
@@ -14,8 +16,8 @@ void CommandPass::execute(std::string argument) {
 
 void CommandPass::logSuccess(int logState) {
   if (logState == LOGGED) {
-    printMessage("230 Login successful.");
+    printMessage("230 " + loginSuccess);
   } else {
-    printMessage("530 Login incorrect.");
+    printMessage("530 " + loginFailed);
   }
 }

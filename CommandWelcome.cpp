@@ -1,5 +1,9 @@
 #include "CommandWelcome.h"
 
-void CommandWelcome::execute(std::string argumen) {
-  printMessage("230 TallerFTP");
+CommandWelcome::CommandWelcome(ServerConfiguration *configuration) {
+  newClient = configuration -> getValueOf("newClient");
+}
+
+void CommandWelcome::execute(std::string argument) {
+  printMessage("230 " + newClient);
 }
