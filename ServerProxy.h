@@ -1,12 +1,11 @@
 #ifndef _SERVER_PROXY_H_
 #define _SERVER_PROXY_H_
 
-
-#include "Server.h"
+#include "ClientProxy.h"
 
 class ServerProxy {
   private:
-    Server server;
+    ClientProxy clientProxy;
   public:
     void executeCommand(std::string aCommand);
 };

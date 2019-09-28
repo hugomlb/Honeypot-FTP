@@ -6,7 +6,7 @@ void ServerProxy::executeCommand(std::string aCommand) {
   for (char& it : aCommand) {
     commandToSend += it;
   }
-  //commandToSend += '\n';
-  server.executeCommand(commandToSend);
+  commandToSend += '\n';
+  clientProxy.send(commandToSend);
 }
 //AGREGAR \n AL FINAL ANTES DE MANDAR
