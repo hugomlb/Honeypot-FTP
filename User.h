@@ -3,16 +3,17 @@
 
 #include <string>
 #include "Command.h"
+#include "ServerConfiguration.h"
 
 class User {
   private:
     bool validUserName;
     bool validPassword;
     bool wasLastCommandUser;
-    std::string name;
+    std::string user;
     std::string password;
   public:
-    User(std::string userName, std::string password);
+    explicit User(ServerConfiguration* configuration);
 
     int enterPassword(const std::string& aPassword);
 

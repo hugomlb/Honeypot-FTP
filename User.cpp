@@ -1,16 +1,15 @@
 #include <string>
-#include <utility>
 #include "User.h"
 
 #define LOGGED 0
 #define NOT_LOGGED -1
 
-User::User(std::string userName, std::string password) {
+User::User(ServerConfiguration* configuration) {
   validPassword = false;
   validUserName = false;
   wasLastCommandUser = false;
-  name = std::move(userName);
-  this -> password = std::move(password);
+  user = configuration -> getValueOf("user");
+  this -> password = configuration -> getValueOf("password");
 }
 
 bool User::isLogged(Command* command) {
@@ -33,7 +32,7 @@ int User::enterPassword(const std::string &aPassword) {
 }
 
 void User::enterUserName(const std::string &aUserName) {
-  if (aUserName == name) {
+  if (aUserName == user) {
     validUserName = true;
   }
 }

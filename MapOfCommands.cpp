@@ -3,10 +3,11 @@
 #include <utility>
 #include "CommandInvalid.h"
 
-MapOfCommands::MapOfCommands(User *aUser, DirectorySet *directories, ServerConfiguration* configuration):
-list(directories, aUser, configuration), make(directories, aUser, configuration),
-remove(directories,aUser, configuration), user(aUser, configuration), pass(aUser, configuration), syst(aUser, configuration),
-currentDirectory(aUser, configuration), quit(configuration), invalid(configuration) {
+MapOfCommands::MapOfCommands(User *aUser, DirectorySet *directories,
+    ServerConfiguration* config): list(directories, aUser, config),
+    make(directories, aUser, config), remove(directories, aUser, config),
+    user(aUser, config), pass(aUser, config), syst(aUser, config),
+    currentDirectory(aUser, config), quit(config), invalid(config) {
   commandMap["LIST"] = &list;
   commandMap["QUIT"] = &quit;
   commandMap["MKD"] = &make;
