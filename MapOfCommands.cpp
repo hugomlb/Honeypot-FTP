@@ -7,7 +7,8 @@ MapOfCommands::MapOfCommands(User *aUser, DirectorySet *directories,
     ServerConfiguration* config): list(directories, aUser, config),
     make(directories, aUser, config), remove(directories, aUser, config),
     user(aUser, config), pass(aUser, config), syst(aUser, config),
-    currentDirectory(aUser, config), quit(config), invalid(config) {
+    currentDirectory(aUser, config), quit(config), invalid(config),
+    help(config) {
   commandMap["LIST"] = &list;
   commandMap["QUIT"] = &quit;
   commandMap["MKD"] = &make;
@@ -17,7 +18,7 @@ MapOfCommands::MapOfCommands(User *aUser, DirectorySet *directories,
   commandMap["PWD"] = &currentDirectory;
   commandMap["SYST"] = &syst;
   commandMap["INVALID"] = &invalid;
-
+  commandMap["HELP"] = &help;
 }
 
 void MapOfCommands::findAndExecute(const std::string& commandCode,

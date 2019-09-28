@@ -11,7 +11,6 @@ class Server {
   //Al recibir una 'q' de entrada standar, el servidor debe cerrarse
   /*
    * PREGUNTAR:
-   *  Ejemplo de help
    *  Cuestiones de como es la comunicacion por sockets (del servidor al cliente)
    */
   private:
@@ -20,7 +19,7 @@ class Server {
     DirectorySet directories;
     MapOfCommands commands;
 
-   // void help(); //Consultar
+   // void help(); //Hacer
 
   public:
     Server();

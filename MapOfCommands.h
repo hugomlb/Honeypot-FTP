@@ -14,6 +14,7 @@
 #include "CommandSyst.h"
 #include "CommandPWD.h"
 #include "CommandInvalid.h"
+#include "CommandHelp.h"
 
 class MapOfCommands {
   private:
@@ -27,6 +28,7 @@ class MapOfCommands {
     CommandPWD currentDirectory;
     CommandQuit quit;
     CommandInvalid invalid;
+    CommandHelp help;
 
   public:
     MapOfCommands(User* aUser, DirectorySet* directorySet,
