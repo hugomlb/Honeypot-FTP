@@ -15,7 +15,7 @@ User::User(ServerConfiguration* configuration) {
 bool User::isLogged(Command* command) {
   bool answer = true;
   if (!(validUserName && validPassword)) {
-    command -> askForLoggin();
+    command -> askForLogin();
     answer = false;
   }
   return answer;
