@@ -20,6 +20,7 @@ void SocketPassive::bind() {
   hints.ai_flags = AI_PASSIVE;
   int errCheck = getaddrinfo(NULL, "7777", &hints, &rst); //SERVICIO HARCODEADO*****************
   //leer man de getaddrinfo
+  //RECORRER LA LISTA QUE DA GETADDRINFO PARA OBTENER EL FD
   if (errCheck != 0) {
     printf("Error in getaddrinfo: %s\n", gai_strerror(errCheck));
   }
@@ -55,7 +56,7 @@ void SocketPassive::listen() {
 }
 
 void SocketPassive::acceptClient() {
-  fd = accept(fd, NULL, NULL);
+  fd = accept(fd, NULL, NULL); //CREAR Y DEVOLVER POR MVSEM UN SOCKETPEER
   // leer man de accept
   if (fd == -1) {
     printf("Error: %s\n", strerror(errno));
