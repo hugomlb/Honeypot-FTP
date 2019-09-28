@@ -8,7 +8,7 @@ CommandRMD::CommandRMD(DirectorySet *directorySet, User* aUser) {
 }
 
 void CommandRMD::execute(std::string argument) {
-  if(!argument.empty() && user -> isLogged(this)) {
+  if(!argument.empty()) {
     removeDirectory(argument);
   } else{
     CommandInvalid commandInvalid;

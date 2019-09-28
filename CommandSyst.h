@@ -4,9 +4,11 @@
 #include "Command.h"
 #include "User.h"
 
-class CommandSyst: Command {
+class CommandSyst: public Command {
   private:
     User* user;
+
+    void systemInfo();
   public:
     explicit CommandSyst(User* aUser);
 

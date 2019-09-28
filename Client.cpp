@@ -11,3 +11,4 @@ void Client::run() {
   }
 }
 //PAra la parte de comunicacion fijarse que se esten mandando los \n
+//PREGUNTAR SOBRE EL ARCHIVO SI TIENE UN NOMBRE FIJO

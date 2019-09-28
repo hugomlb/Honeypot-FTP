@@ -5,14 +5,7 @@
 #include <unordered_map>
 #include "User.h"
 #include "DirectorySet.h"
-#include "Command.h"
-#include "CommandWelcome.h"
-#include "CommandList.h"
-#include "CommandQuit.h"
-#include "CommandMKD.h"
-#include "CommandRMD.h"
-#include "CommandPass.h"
-#include "CommandUser.h"
+#include "MapOfCommands.h"
 
 class Server {
   //Al recibir una 'q' de entrada standar, el servidor debe cerrarse
@@ -28,13 +21,7 @@ class Server {
   private:
     User user;
     DirectorySet directories;
-    std::unordered_map<std::string, Command*> commandMap;
-    CommandList list;
-    CommandQuit quit;
-    CommandMKD make;
-    CommandRMD remove;
-    CommandUser userLog;
-    CommandPass passLog;
+    MapOfCommands commands;
 
    // void help(); //Consultar
 

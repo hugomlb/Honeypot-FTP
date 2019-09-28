@@ -7,6 +7,8 @@
 class CommandPWD: public Command {
   private:
     User* user;
+
+    void currentDirectory();
   public:
     explicit CommandPWD(User* aUser);
     void execute(std::string argument) override;

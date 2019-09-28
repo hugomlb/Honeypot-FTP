@@ -2,17 +2,10 @@
 #include <sstream>
 #include "Server.h"
 #include "CommandWelcome.h"
-#include "CommandInvalid.h"
+#include "Command.h"
 
+Server::Server() : user("hugo", "hola"), commands(&user, &directories){
 
-Server::Server() : user("hugo", "hola"), list(&directories, &user), make(&directories, &user),
-    remove(&directories, &user), userLog(&user), passLog(&user) {
-  commandMap["LIST"] = &list;
-  commandMap["QUIT"] = &quit;
-  commandMap["MKD"] = &make;
-  commandMap["RMD"] = &remove;
-  commandMap["USER"] = &userLog;
-  commandMap ["PASS"] = &passLog;
 }
 
 void Server::newClient() {
@@ -30,14 +23,7 @@ void Server::executeCommand(const std::string& command) {
   } else {
     commandCode = command;
   }
-
-  auto iterator = commandMap.find(commandCode);
-  if (iterator != commandMap.end()) {
-    iterator -> second -> execute(commandArgument);
-  } else {
-    CommandInvalid commandInvalid;
-    commandInvalid.execute("");
-  }
+  commands.findAndExecute(commandCode, commandArgument);
   user.lastCommandWas(commandCode);
 }
 
