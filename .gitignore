@@ -2,6 +2,8 @@
 *.o
 *.exe
 tp
+client
+server
 cmake-build-debug/
 .idea/
 idea/
