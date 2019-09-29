@@ -1,10 +1,11 @@
-#include <cstring>
 #include "client_Client.h"
 
+#define VALID_AMOUNT_OF_PARAMETERS 3
+
 int main(int argc, char const *argv[]) {
-  if (strcmp(argv[1], "client") == 0) {
+  if (argc == VALID_AMOUNT_OF_PARAMETERS) {
     client_Client client;
-    client.run();
+    client.run(argv[1], argv[2]);
   }
   return 0;
 }

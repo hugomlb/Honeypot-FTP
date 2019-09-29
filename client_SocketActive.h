@@ -12,7 +12,7 @@ class SocketActive: public common_SocketPeer {
   public:
     SocketActive();
 
-    void connect();
+    void connect(const char* hostName, const char* service);
 
     ~SocketActive();
 };

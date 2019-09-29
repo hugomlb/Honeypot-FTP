@@ -8,14 +8,14 @@
 SocketActive::SocketActive(): common_SocketPeer(-1) {
 }
 
-void SocketActive::connect() {
+void SocketActive::connect(const char* hostName, const char* service) {
   struct addrinfo hints;
   struct addrinfo *result;
   memset(&hints, 0, sizeof(struct addrinfo));
   hints.ai_family = AF_INET;
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = 0;
-  int errcheck = getaddrinfo("localhost", "7777", & hints, & result); //harcodeado
+  int errcheck = getaddrinfo(hostName, service, & hints, & result);
   if (errcheck != 0) {
     printf("Error in getaddrinfo: %s\n", gai_strerror(errcheck));
   }
@@ -44,48 +44,4 @@ int SocketActive::getConnection(struct addrinfo *result) {
 }
 
 SocketActive::~SocketActive() {
-  //shutdown(fd, SHUT_RDWR);
-  //close(fd);
 }
-
-/*
-int socketC_send(socketC_t *self, char *buf, int size) {
-  int sent = 0;
-  int s = 0;
-  bool socketValid = true;
-  int returnValue = OK;
-  while (sent < size && socketValid) {
-    s = send(self -> fd, &buf[sent], size - sent, MSG_NOSIGNAL);
-    if (s == 0) {
-      socketValid = false;
-      returnValue = SOCKET_CLOSED;
-    } else if (s == -1) {
-      printf("Error: %s\n", strerror(errno));
-      returnValue = ERROR;
-      socketValid = false;
-    }
-    sent += s;
-  }
-  return returnValue;
-}
-
-int socketC_receive(socketC_t *self, char *buf, int size) {
-  int received = 0;
-  int s;
-  bool socketValid = true;
-  int returnValue = OK;
-  while (received < size && socketValid) {
-    s = recv(self -> fd, &buf[received], size - received, 0);
-    if (s == 0) {
-      socketValid = false;
-      returnValue = SOCKET_CLOSED;
-    } else if (s == -1) {
-      printf("Error: %s\n", strerror(errno));
-      returnValue = ERROR;
-      socketValid = false;
-    }
-    received += s;
-  }
-  return returnValue;
-}
-*/

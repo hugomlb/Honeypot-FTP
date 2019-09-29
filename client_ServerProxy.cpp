@@ -2,8 +2,8 @@
 #include <sstream>
 #include "client_ServerProxy.h"
 
-client_ServerProxy::client_ServerProxy() {
-  socketActive.connect();
+client_ServerProxy::client_ServerProxy(const char* hostName, const char* service) {
+  socketActive.connect(hostName, service);
   std::string answer;
   socketActive.receive(&answer);
   std::cout << answer;

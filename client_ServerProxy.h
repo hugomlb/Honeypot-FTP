@@ -10,7 +10,7 @@ class client_ServerProxy {
 
     std::string getAnswer();
   public:
-    client_ServerProxy();
+    client_ServerProxy(const char* hostName, const char* service);
 
     void executeCommand(std::string aCommand);
 };

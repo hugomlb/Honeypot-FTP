@@ -5,7 +5,10 @@
 
 class client_Client {
   public:
-    static void run();
+    client_Client();
+
+    static void run(const char* hostName, const char* service);
+    ~client_Client();
 };
 
 
