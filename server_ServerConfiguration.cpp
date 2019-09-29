@@ -2,8 +2,8 @@
 #include <iostream>
 #include "server_ServerConfiguration.h"
 
-server_ServerConfiguration::server_ServerConfiguration() {
-  std::ifstream configFile("config.cfg", std::ifstream::in);
+server_ServerConfiguration::server_ServerConfiguration(const char* fileName) {
+  std::ifstream configFile(fileName, std::ifstream::in);
   std::string key;
   std::string value;
   while (!configFile.eof()) {

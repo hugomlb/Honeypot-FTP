@@ -14,7 +14,7 @@ class server_SocketPassive {
   public:
     server_SocketPassive();
 
-    void bind();
+    void bind(const char *aService);
 
     void listen();
 

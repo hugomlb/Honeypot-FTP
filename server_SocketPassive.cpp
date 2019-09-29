@@ -10,14 +10,14 @@ server_SocketPassive::server_SocketPassive() {
   fd = -1;
 }
 
-void server_SocketPassive::bind() {
+void server_SocketPassive::bind(const char *aService) {
   struct addrinfo hints;
   struct addrinfo *rst;
   memset(&hints, 0, sizeof(struct addrinfo));
   hints.ai_family = AF_INET;
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = AI_PASSIVE;
-  int errCheck = getaddrinfo(nullptr, "7777", &hints, &rst); //SERVICIO HARCODEADO*****************
+  int errCheck = getaddrinfo(nullptr, aService, &hints, &rst); //SERVICIO HARCODEADO*****************
   //leer el man de getaddrinfo
   if (errCheck != 0) {
     printf("Error in getaddrinfo: %s\n", gai_strerror(errCheck));

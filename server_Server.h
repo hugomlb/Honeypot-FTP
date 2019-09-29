@@ -10,10 +10,6 @@
 
 class server_Server {
   //Al recibir una 'q' de entrada standar, el servidor debe cerrarse
-  /*
-   * PREGUNTAR:
-   *  Cuestiones de como es la comunicacion por sockets (del servidor al cliente)
-   */
   private:
     server_ServerConfiguration configuration;
     server_User user;
@@ -22,9 +18,8 @@ class server_Server {
     server_SocketPassive socketPassive;
     std::string lastCommandCode;
 
-
   public:
-    server_Server();
+    explicit server_Server(const char* aService, const char* configurationFile);
 
     void run();
 

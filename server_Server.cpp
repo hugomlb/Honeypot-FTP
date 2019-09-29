@@ -6,9 +6,10 @@
 #include "server_ClientProxy.h"
 
 
-server_Server::server_Server() : user(&configuration), commands(&user, &directories,
-                                                                &configuration) {
-  socketPassive.bind();
+server_Server::server_Server(const char* aService, const char* configurationFile):
+    configuration(configurationFile), user(&configuration),
+    commands(&user, &directories,&configuration) {
+  socketPassive.bind(aService);
   socketPassive.listen();
   lastCommandCode = "WELCOME";
 }

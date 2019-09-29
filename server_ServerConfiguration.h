@@ -8,7 +8,7 @@ class server_ServerConfiguration {
   private:
     std::unordered_map<std::string, std::string> configuration;
   public:
-    server_ServerConfiguration();
+    explicit server_ServerConfiguration(const char* fileName);
 
     std::string getValueOf(const std::string& key);
 };
