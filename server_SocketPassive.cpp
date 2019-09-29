@@ -39,12 +39,12 @@ int server_SocketPassive::getBind(struct addrinfo *rst) {
     int errCheck = setsockopt(aFd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
     if (errCheck == -1) {
       printf("Error: %s\n", strerror(errno));
-      close(aFd);
+      ::close(aFd);
     }
     errCheck = ::bind(aFd, ptr -> ai_addr, ptr -> ai_addrlen);
     if (errCheck == -1) {
       printf("Error: %s\n", strerror(errno));
-      close(aFd);
+      ::close(aFd);
     }
     binded = (errCheck != -1);
   }
@@ -68,6 +68,13 @@ common_SocketPeer server_SocketPassive::acceptClient() {
 }
 
 server_SocketPassive::~server_SocketPassive() {
+  if (fd != -1) {
+    close();
+  }
+}
+
+void server_SocketPassive::close() {
   shutdown(fd, SHUT_RDWR);
-  close(fd);
+  ::close(fd);
+  fd = -1;
 }

@@ -7,10 +7,11 @@
 #include "server_ConnectedClientVector.h"
 
 
-server_Server::server_Server(const char* aService, const char* configurationFile):
-    configuration(configurationFile) {
-  socketPassive.bind(aService);
-  socketPassive.listen();
+server_Server::server_Server(const char* aService, const char* configurationFile,
+    server_SocketPassive* socketPassive): configuration(configurationFile) {
+  this -> socketPassive = socketPassive;
+  this -> socketPassive -> bind(aService);
+  this -> socketPassive -> listen();
   keepRunning = false;
 }
 
@@ -19,8 +20,10 @@ void server_Server::run() {
   server_CommandWelcome command(&configuration);
   server_ConnectedClientVector clients(&command);
   while (keepRunning) {
-    common_SocketPeer socketPeer = std::move(socketPassive.acceptClient());
-    clients.add(new server_ConnectedClient(&configuration, &directories, std::move(socketPeer)));
+    common_SocketPeer socketPeer = std::move(socketPassive -> acceptClient());
+    if (keepRunning) {
+      clients.add(new server_ConnectedClient(&configuration, &directories, std::move(socketPeer)));
+    }
   }
 }
 

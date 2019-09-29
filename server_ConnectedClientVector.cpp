@@ -7,12 +7,12 @@ server_ConnectedClientVector::server_ConnectedClientVector(
 
 void server_ConnectedClientVector::add(server_ConnectedClient *client) {
   client -> welcomenClient(welcome);
-  client -> run();
+  client -> start();
   clients.push_back(client);
 }
 
 server_ConnectedClientVector::~server_ConnectedClientVector() {
-  for (unsigned long i = 0; i < clients.size(); i++) {
+  for (int i = 0; i < (int) clients.size(); i++) {
     clients[i] -> join();
     delete clients[i];
   }

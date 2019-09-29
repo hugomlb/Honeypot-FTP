@@ -20,6 +20,8 @@ class server_SocketPassive {
 
     common_SocketPeer acceptClient();
 
+    void close();
+
     ~server_SocketPassive();
 };
 
