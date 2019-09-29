@@ -15,7 +15,7 @@ void CommandSyst::execute(std::string argument, SocketPeer* socketPeer) {
 }
 
 void CommandSyst::systemInformation(SocketPeer* socketPeer) {
-  if (user -> isLogged(this)) {
+  if (user -> isLogged(this, socketPeer)) {
     sendMessage("215 " + systemInfo, socketPeer);
   }
 }

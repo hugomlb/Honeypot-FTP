@@ -12,10 +12,10 @@ User::User(ServerConfiguration* configuration) {
   this -> password = configuration -> getValueOf("password");
 }
 
-bool User::isLogged(Command* command) {
+bool User::isLogged(Command* command, SocketPeer* socketPeer) {
   bool answer = true;
   if (!(validUserName && validPassword)) {
-    command -> askForLogin();
+    command -> askForLogin(socketPeer);
     answer = false;
   }
   return answer;

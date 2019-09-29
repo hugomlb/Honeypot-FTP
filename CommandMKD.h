@@ -14,7 +14,7 @@ class CommandMKD: public Command {
     std::string mkdSuccess;
     std::string mkdFailed;
 
-    void makeDirectory(const std::string& aDirectoryName);
+    void makeDirectory(const std::string& aDirectoryName, SocketPeer* socketPeer);
   public:
     explicit CommandMKD(DirectorySet* directorySet, User* aUser,
         ServerConfiguration* configuration);

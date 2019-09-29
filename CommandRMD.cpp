@@ -13,17 +13,17 @@ CommandRMD::CommandRMD(DirectorySet* directorySet, User* aUser,
 
 void CommandRMD::execute(std::string argument, SocketPeer* socketPeer) {
   if(!argument.empty()) {
-    removeDirectory(argument);
+    removeDirectory(argument, socketPeer);
   }
 }
 
-void CommandRMD::removeDirectory(const std::string& aDirectoryName) {
-  if(user -> isLogged(this)) {
+void CommandRMD::removeDirectory(const std::string& aDirectoryName, SocketPeer* socketPeer) {
+  if(user -> isLogged(this, socketPeer)) {
     try {
       directories -> removeDirectory(aDirectoryName);
-      printMessage("250 " + rmdSuccess);
+      sendMessage("250 " + rmdSuccess, socketPeer);
     } catch (DirectorySetException &e) {
-      printMessage("550 " + rmdFailed);
+      sendMessage("550 " + rmdFailed, socketPeer);
     }
   }
 }

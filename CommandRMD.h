@@ -14,7 +14,7 @@ class CommandRMD: public Command {
     std::string rmdSuccess;
     std::string rmdFailed;
 
-    void removeDirectory(const std::string& aDirectoryName);
+    void removeDirectory(const std::string& aDirectoryName, SocketPeer* socketPeer);
 
   public:
     explicit CommandRMD(DirectorySet* directorySet, User* aUser,

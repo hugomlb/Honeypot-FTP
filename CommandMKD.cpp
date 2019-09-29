@@ -13,17 +13,17 @@ CommandMKD::CommandMKD(DirectorySet* directorySet, User* aUser,
 
 void CommandMKD::execute(std::string argument, SocketPeer* socketPeer) {
   if (!argument.empty()) {
-    makeDirectory(argument);
+    makeDirectory(argument, socketPeer);
   }
 }
 
-void CommandMKD::makeDirectory(const std::string& aDirectoryName) {
-  if (user -> isLogged(this)) {
+void CommandMKD::makeDirectory(const std::string& aDirectoryName, SocketPeer* socketPeer) {
+  if (user -> isLogged(this, socketPeer)) {
     try {
       directories -> addDirectory(aDirectoryName);
-      printMessage("257 " + aDirectoryName + " " + mkdSuccess);
+      sendMessage("257 " + aDirectoryName + " " + mkdSuccess, socketPeer);
     } catch (DirectorySetException &e) {
-      printMessage("550 " + mkdFailed);
+      sendMessage("550 " + mkdFailed, socketPeer);
     }
   }
 }

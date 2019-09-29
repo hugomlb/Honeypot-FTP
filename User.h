@@ -21,7 +21,7 @@ class User {
 
     void lastCommandWas(const std::string& aCommandCode);
 
-    bool isLogged(Command* aCommand);
+    bool isLogged(Command* aCommand, SocketPeer* socketPeer);
 };
 
 

@@ -16,7 +16,7 @@ class Command {
 
     static void printMessage(const std::string& aMessage);
 
-    void askForLogin();
+    void askForLogin(SocketPeer* socketPeer);
 
     void sendMessage(std::string aMessage, SocketPeer* socketPeer);
 

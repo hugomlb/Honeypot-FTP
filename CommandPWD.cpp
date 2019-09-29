@@ -10,12 +10,12 @@ CommandPWD::CommandPWD(User *aUser, ServerConfiguration* configuration):
 
 void CommandPWD::execute(std::string argument, SocketPeer* socketPeer) {
   if (argument.empty()) {
-    currentDirectory();
+    currentDirectory(socketPeer);
   }
 }
 
-void CommandPWD::currentDirectory() {
-  if (user -> isLogged(this)) {
-    printMessage("257 " + currentDirectoryMsg);
+void CommandPWD::currentDirectory(SocketPeer* socketPeer) {
+  if (user -> isLogged(this, socketPeer)) {
+    sendMessage("257 " + currentDirectoryMsg, socketPeer);
   }
 }

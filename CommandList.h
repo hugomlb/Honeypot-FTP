@@ -13,7 +13,7 @@ class CommandList: public Command {
     User* user;
     std::string listBegin;
     std::string listEnd;
-    void list();
+    void list(SocketPeer* socketPeer);
   public:
     explicit CommandList(DirectorySet* directorySet, User* aUser,
         ServerConfiguration* configuration);

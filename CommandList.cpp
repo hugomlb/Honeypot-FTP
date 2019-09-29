@@ -11,13 +11,13 @@ CommandList::CommandList(DirectorySet *directorySet, User* aUser,
 
 void CommandList::execute(std::string argument, SocketPeer* socketPeer) {
   if (argument.empty()) {
-    list();
+    list(socketPeer);
   }
 }
 
-void CommandList::list() {
-  if (user -> isLogged(this)) {
-    printMessage("150 " + listBegin);
+void CommandList::list(SocketPeer* socketPeer) {
+  if (user -> isLogged(this, socketPeer)) {
+    sendMessage("150 " + listBegin, socketPeer);
     std::list<std::string> directoryList = directories -> getDirectoryList();
     std::list<std::string>::iterator iterator;
     for (iterator = directoryList.begin(); iterator != directoryList.end(); iterator++) {
