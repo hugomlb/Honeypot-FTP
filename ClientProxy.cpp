@@ -15,7 +15,8 @@ void ClientProxy::receiveMessage(SocketPeer* socketPeer) {
     getline(test, commandCode, ' ');
     getline(test, commandArgument);
   } else {
-    commandCode = aCommand;
+    std::istringstream test(aCommand);
+    getline(test, commandCode);
   }
   server -> executeCommand(commandCode, commandArgument);
 }

@@ -26,7 +26,7 @@ void SocketPeer::send(std::string message) {
   bool socketValid = true;
   std::string::iterator iterator =  message.begin();
   char currentChar = *iterator;
-  do {
+  while (iterator != message.end() && socketValid) {
     operationState = ::send(fd, (void*) &currentChar, 1, MSG_NOSIGNAL);
     if (operationState == 0) {
       socketValid = false;
@@ -38,14 +38,14 @@ void SocketPeer::send(std::string message) {
     }
     iterator ++;
     currentChar = *iterator;
-  } while (currentChar != '\n' && socketValid);
+  }
 }
 
 void SocketPeer::receive(std::string *answer) {
   int operationState;
   bool socketValid = true;
-  char currentChar;
-  do {
+  char currentChar = ' ';
+  while (currentChar != '\n' && socketValid) {
     operationState = recv(fd, &currentChar, 1, 0);
     if (operationState == 0) {
       socketValid = false;
@@ -56,7 +56,7 @@ void SocketPeer::receive(std::string *answer) {
       socketValid = false;
     }
     *answer += currentChar;
-  } while (currentChar != '\n' && socketValid);
+  }
 }
 
 SocketPeer::~SocketPeer() {

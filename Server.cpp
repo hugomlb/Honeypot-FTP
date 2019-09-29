@@ -26,6 +26,7 @@ void Server::run() {
 void Server::executeCommand(const std::string& commandCode, std::string commandArgument) {
   commands.findAndExecute(commandCode, std::move(commandArgument));
   user.lastCommandWas(commandCode);
+  lastCommandCode = commandCode;
 }
 
 Server::~Server() {
