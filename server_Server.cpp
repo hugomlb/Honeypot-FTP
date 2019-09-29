@@ -4,11 +4,11 @@
 #include "server_CommandWelcome.h"
 #include "server_Command.h"
 #include "server_ConnectedClient.h"
-#include "server_ConnectedClientVector.h"
 
 
 server_Server::server_Server(const char* aService, const char* configurationFile,
-    server_SocketPassive* socketPassive): configuration(configurationFile) {
+    server_SocketPassive* socketPassive): configuration(configurationFile), welcome(&configuration),
+    clients(&welcome){
   this -> socketPassive = socketPassive;
   this -> socketPassive -> bind(aService);
   this -> socketPassive -> listen();
@@ -18,7 +18,6 @@ server_Server::server_Server(const char* aService, const char* configurationFile
 void server_Server::run() {
   keepRunning = true;
   server_CommandWelcome command(&configuration);
-  server_ConnectedClientVector clients(&command);
   while (keepRunning) {
     common_SocketPeer socketPeer = std::move(socketPassive -> acceptClient());
     if (keepRunning) {

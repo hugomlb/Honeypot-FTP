@@ -1,13 +1,12 @@
 #ifndef _SERVER_CONNECTED_CLIENT_H_
 #define _SERVER_CONNECTED_CLIENT_H_
 
-
 #include <atomic>
 #include "common_Thread.h"
 #include "server_User.h"
 #include "server_MapOfCommands.h"
-#include "server_ClientProxy.h"
 #include "server_CommandWelcome.h"
+#include "server_ClientProxy.h"
 
 class server_ConnectedClient: public common_Thread {
   private:

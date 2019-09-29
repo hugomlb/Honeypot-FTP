@@ -11,7 +11,9 @@ int main(int argc, char const *argv[]) {
     while (quit != "q") {
       getline(std::cin, quit);
     }
+    std::cout << "Cerrando Socket" << std::endl;
     socketPassive.close();
+    std::cout << "Cerrando Servidor" << std::endl;
     server.stop();
     std::cout << "Join" << std::endl;
     server.join();

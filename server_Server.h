@@ -4,11 +4,12 @@
 #include <string>
 #include <unordered_map>
 #include <mutex>
-#include "server_User.h"
+#include <atomic>
 #include "server_DirectorySet.h"
 #include "server_MapOfCommands.h"
 #include "server_SocketPassive.h"
 #include "common_Thread.h"
+#include "server_ConnectedClientVector.h"
 
 class server_Server: public common_Thread {
   //Al recibir una 'q' de entrada standar, el servidor debe cerrarse
@@ -17,7 +18,9 @@ class server_Server: public common_Thread {
     server_ServerConfiguration configuration;
     server_DirectorySet directories;
     server_SocketPassive* socketPassive;
-    bool keepRunning;
+    std::atomic<bool> keepRunning{};
+    server_CommandWelcome welcome;
+    server_ConnectedClientVector clients;
 
   public:
     explicit server_Server(const char* aService, const char* configurationFile,

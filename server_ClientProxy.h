@@ -1,8 +1,9 @@
 #ifndef _CLIENT_PROXY_H_
 #define _CLIENT_PROXY_H_
 
-
-#include "server_Server.h"
+#include "common_SocketPeer.h"
+#include "server_Command.h"
+#include <string>
 
 class server_ClientProxy {
   private:
