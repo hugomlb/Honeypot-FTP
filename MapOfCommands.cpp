@@ -21,13 +21,12 @@ MapOfCommands::MapOfCommands(User *aUser, DirectorySet *directories,
   commandMap["HELP"] = &help;
 }
 
-void MapOfCommands::findAndExecute(const std::string& commandCode,
-                                   std::string commandArgument) {
+Command* MapOfCommands::find(const std::string& commandCode) {
   auto iterator = commandMap.find(commandCode);
   if (iterator != commandMap.end()) {
-    iterator -> second -> execute(std::move(commandArgument));
+    return  iterator -> second;
   } else {
     iterator = commandMap.find("INVALID");
-    iterator -> second -> execute("");
+    return  iterator -> second;
   }
 }

@@ -5,6 +5,7 @@
 #include "User.h"
 #include "DirectorySet.h"
 #include "ServerConfiguration.h"
+#include "SocketPeer.h"
 
 class CommandList: public Command {
   private:
@@ -17,7 +18,7 @@ class CommandList: public Command {
     explicit CommandList(DirectorySet* directorySet, User* aUser,
         ServerConfiguration* configuration);
 
-    void execute(std::string argument) override;
+    void execute(std::string argument, SocketPeer* socketPeer) override;
 };
 
 

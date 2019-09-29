@@ -17,14 +17,17 @@ void Server::run() {
   SocketPeer socketPeer = std::move(socketPassive.acceptClient());
   ClientProxy clientProxy(this);
   CommandWelcome command(&configuration);
-  command.execute("");
+  command.execute("", nullptr);
+  //std::string hola = "HolaMundo\n";
+  //socketPeer.send(hola);
   while (lastCommandCode != "QUIT") {
     clientProxy.receiveMessage(&socketPeer);
   }
 }
 
 void Server::executeCommand(const std::string& commandCode, std::string commandArgument) {
-  commands.findAndExecute(commandCode, std::move(commandArgument));
+  Command* command = commands.find(commandCode);
+  command->execute(std::move(commandArgument), nullptr);
   user.lastCommandWas(commandCode);
   lastCommandCode = commandCode;
 }

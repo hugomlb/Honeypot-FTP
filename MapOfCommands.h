@@ -34,7 +34,7 @@ class MapOfCommands {
     MapOfCommands(User* aUser, DirectorySet* directorySet,
         ServerConfiguration* configuration);
 
-    void findAndExecute(const std::string& commandCode, std::string commandArgument);
+    Command* find(const std::string& commandCode);
 };
 
 #endif

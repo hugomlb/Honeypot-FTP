@@ -8,7 +8,7 @@ CommandSyst::CommandSyst(User* aUser, ServerConfiguration* configuration):
   systemInfo = configuration -> getValueOf("systemInfo");
 }
 
-void CommandSyst::execute(std::string argument) {
+void CommandSyst::execute(std::string argument, SocketPeer* socketPeer) {
   if (argument.empty()) {
     systemInformation();
   }

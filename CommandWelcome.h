@@ -10,7 +10,7 @@ class CommandWelcome: public Command{
   public:
     explicit CommandWelcome(ServerConfiguration* configuration);
 
-    void execute(std::string argument) override ;
+    void execute(std::string argument, SocketPeer* socketPeer) override ;
 };
 
 #endif

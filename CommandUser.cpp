@@ -6,7 +6,7 @@ CommandUser::CommandUser(User* aUser, ServerConfiguration* configuration):
   passRequired = configuration -> getValueOf("passRequired");
 }
 
-void CommandUser::execute(std::string argument) {
+void CommandUser::execute(std::string argument, SocketPeer* socketPeer) {
   user -> enterUserName(argument);
   printMessage("331 " + passRequired);
 }

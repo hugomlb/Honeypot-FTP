@@ -60,6 +60,8 @@ void SocketPeer::receive(std::string *answer) {
 }
 
 SocketPeer::~SocketPeer() {
-  shutdown(fd, SHUT_RDWR);
-  close(fd);
+  if (fd != -1) {
+    shutdown(fd, SHUT_RDWR);
+    close(fd);
+  }
 }

@@ -1,4 +1,5 @@
 #include "CommandPass.h"
+#include "SocketPeer.h"
 
 #define LOGGED 0
 #define NOT_LOGGED -1
@@ -10,7 +11,7 @@ CommandPass::CommandPass(User *aUser, ServerConfiguration* configuration):
   loginFailed = configuration -> getValueOf("loginFailed");
 }
 
-void CommandPass::execute(std::string argument) {
+void CommandPass::execute(std::string argument, SocketPeer* socketPeer) {
   int logState = user -> enterPassword(argument);
   logSuccess(logState);
 }

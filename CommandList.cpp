@@ -9,7 +9,7 @@ CommandList::CommandList(DirectorySet *directorySet, User* aUser,
   listEnd = configuration -> getValueOf("listEnd");
 }
 
-void CommandList::execute(std::string argument) {
+void CommandList::execute(std::string argument, SocketPeer* socketPeer) {
   if (argument.empty()) {
     list();
   }

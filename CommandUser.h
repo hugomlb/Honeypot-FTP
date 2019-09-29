@@ -4,6 +4,7 @@
 #include "Command.h"
 #include "User.h"
 #include "ServerConfiguration.h"
+#include "SocketPeer.h"
 
 class CommandUser: public Command {
   private:
@@ -13,7 +14,7 @@ class CommandUser: public Command {
   public:
     explicit CommandUser(User* aUser, ServerConfiguration* configuration);
 
-    void execute(std::string argument) override;
+    void execute(std::string argument, SocketPeer* socketPeer) override;
 };
 
 

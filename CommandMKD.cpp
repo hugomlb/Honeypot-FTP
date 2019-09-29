@@ -1,6 +1,7 @@
 #include "CommandMKD.h"
 #include "DirectorySetException.h"
 #include "CommandInvalid.h"
+#include "SocketPeer.h"
 
 CommandMKD::CommandMKD(DirectorySet* directorySet, User* aUser,
     ServerConfiguration* configuration): Command(configuration) {
@@ -10,7 +11,7 @@ CommandMKD::CommandMKD(DirectorySet* directorySet, User* aUser,
   mkdFailed = configuration -> getValueOf("mkdFailed");
 }
 
-void CommandMKD::execute(std::string argument) {
+void CommandMKD::execute(std::string argument, SocketPeer* socketPeer) {
   if (!argument.empty()) {
     makeDirectory(argument);
   }

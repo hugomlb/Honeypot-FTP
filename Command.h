@@ -4,6 +4,7 @@
 
 #include <string>
 #include "ServerConfiguration.h"
+#include "SocketPeer.h"
 
 class Command {
   private:
@@ -11,7 +12,7 @@ class Command {
   public:
     explicit Command(ServerConfiguration* configuration);
 
-    virtual void execute(std::string argument) = 0;
+    virtual void execute(std::string argument, SocketPeer* socketPeer) = 0;
 
     static void printMessage(const std::string& aMessage);
 

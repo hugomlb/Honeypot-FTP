@@ -3,6 +3,9 @@
 
 ServerProxy::ServerProxy() {
   socketActive.connect();
+  std::string answer;
+  //socketActive.receive(&answer);
+  //std::cout << answer;
 }
 
 void ServerProxy::executeCommand(std::string aCommand) {

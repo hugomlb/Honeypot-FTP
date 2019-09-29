@@ -13,7 +13,7 @@ class CommandPWD: public Command {
     void currentDirectory();
   public:
     explicit CommandPWD(User* aUser, ServerConfiguration* configuration);
-    void execute(std::string argument) override;
+    void execute(std::string argument, SocketPeer* socketPeer) override;
 };
 
 

@@ -1,4 +1,5 @@
 #include "CommandHelp.h"
+#include "SocketPeer.h"
 
 
 CommandHelp::CommandHelp(ServerConfiguration* configuration):
@@ -7,6 +8,6 @@ CommandHelp::CommandHelp(ServerConfiguration* configuration):
 
 }
 
-void CommandHelp::execute(std::string argument) {
+void CommandHelp::execute(std::string argument, SocketPeer* socketPeer) {
   printMessage("214 " + commands);
 }

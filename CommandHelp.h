@@ -11,7 +11,7 @@ class CommandHelp: public Command {
   public:
     explicit CommandHelp(ServerConfiguration* configuration);
 
-    void execute(std::string argument) override;
+    void execute(std::string argument, SocketPeer* socketPeer) override;
 };
 
 

@@ -13,7 +13,7 @@ class CommandSyst: public Command {
   public:
     explicit CommandSyst(User* aUser, ServerConfiguration* configuration);
 
-    void execute(std::string argument) override;
+    void execute(std::string argument, SocketPeer* socketPeer) override;
 };
 
 

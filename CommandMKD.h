@@ -19,7 +19,7 @@ class CommandMKD: public Command {
     explicit CommandMKD(DirectorySet* directorySet, User* aUser,
         ServerConfiguration* configuration);
 
-    void execute(std::string argument) override;
+    void execute(std::string argument, SocketPeer* socketPeer) override;
 };
 
 

@@ -10,7 +10,7 @@ class CommandInvalid : public Command {
   public:
     explicit CommandInvalid(ServerConfiguration* configuration);
 
-    void execute(std::string argument) override;
+    void execute(std::string argument, SocketPeer* socketPeer) override;
 };
 
 #endif
