@@ -8,5 +8,5 @@ CommandUser::CommandUser(User* aUser, ServerConfiguration* configuration):
 
 void CommandUser::execute(std::string argument, SocketPeer* socketPeer) {
   user -> enterUserName(argument);
-  printMessage("331 " + passRequired);
+  sendMessage("331 " + passRequired, socketPeer);
 }

@@ -18,6 +18,8 @@ class Command {
 
     void askForLogin();
 
+    void sendMessage(std::string aMessage, SocketPeer* socketPeer);
+
     ~Command() = default;
 };
 

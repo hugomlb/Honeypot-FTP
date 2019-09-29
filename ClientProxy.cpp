@@ -1,22 +1,25 @@
 #include <sstream>
 #include "ClientProxy.h"
 
-ClientProxy::ClientProxy(Server *server) {
+ClientProxy::ClientProxy(Server *server, SocketPeer aSocketPeer): socketPeer(std::move(aSocketPeer)) {
   this -> server = server;
 }
 
-void ClientProxy::receiveMessage(SocketPeer* socketPeer) {
-  std::string commandCode;
-  std::string commandArgument;
-  std::string aCommand;
-  socketPeer -> receive(&aCommand);
+void ClientProxy::receiveMessage(std::string* received) {
+  socketPeer.receive(received);
+}
+
+void ClientProxy::decode(std::string aCommand,std::string *commandCode, std::string* argument) {
   if (aCommand.find_first_of(' ') != std::string::npos) {
     std::istringstream test(aCommand);
-    getline(test, commandCode, ' ');
-    getline(test, commandArgument);
+    getline(test, *commandCode, ' ');
+    getline(test, *argument);
   } else {
     std::istringstream test(aCommand);
-    getline(test, commandCode);
+    getline(test, *commandCode);
   }
-  server -> executeCommand(commandCode, commandArgument);
+}
+
+void ClientProxy::execute(Command *command, std::string argument) {
+  command -> execute(std::move(argument), &socketPeer);
 }

@@ -15,21 +15,24 @@ Server::Server() : user(&configuration), commands(&user, &directories,
 
 void Server::run() {
   SocketPeer socketPeer = std::move(socketPassive.acceptClient());
-  ClientProxy clientProxy(this);
+  ClientProxy clientProxy(this, std::move(socketPeer));
   CommandWelcome command(&configuration);
-  command.execute("", nullptr);
-  //std::string hola = "HolaMundo\n";
-  //socketPeer.send(hola);
+  clientProxy.execute(&command, "");
   while (lastCommandCode != "QUIT") {
-    clientProxy.receiveMessage(&socketPeer);
+    std::string clientMessage;
+    std::string commandCode;
+    std::string commandArgument;
+    clientProxy.receiveMessage(&clientMessage);
+    clientProxy.decode(clientMessage, &commandCode, &commandArgument);
+    Command* aCommand = findCommand(commandCode);
+    clientProxy.execute(aCommand, commandArgument);
+    user.lastCommandWas(commandCode);
+    lastCommandCode = commandCode;
   }
 }
 
-void Server::executeCommand(const std::string& commandCode, std::string commandArgument) {
-  Command* command = commands.find(commandCode);
-  command->execute(std::move(commandArgument), nullptr);
-  user.lastCommandWas(commandCode);
-  lastCommandCode = commandCode;
+Command* Server::findCommand(const std::string& commandCode) {
+  return commands.find(commandCode);
 }
 
 Server::~Server() {

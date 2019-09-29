@@ -12,7 +12,7 @@ class CommandPass: public Command {
     std::string loginSuccess;
     std::string loginFailed;
 
-    void logSuccess(int logState);
+    void sendLogState(int logState, SocketPeer* socketPeer);
 
   public:
     explicit CommandPass(User* aUser, ServerConfiguration* configuration);

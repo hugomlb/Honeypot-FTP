@@ -9,5 +9,5 @@ CommandHelp::CommandHelp(ServerConfiguration* configuration):
 }
 
 void CommandHelp::execute(std::string argument, SocketPeer* socketPeer) {
-  printMessage("214 " + commands);
+  sendMessage("214 " + commands, socketPeer);
 }

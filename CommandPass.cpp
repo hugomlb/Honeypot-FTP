@@ -13,13 +13,13 @@ CommandPass::CommandPass(User *aUser, ServerConfiguration* configuration):
 
 void CommandPass::execute(std::string argument, SocketPeer* socketPeer) {
   int logState = user -> enterPassword(argument);
-  logSuccess(logState);
+  sendLogState(logState, socketPeer);
 }
 
-void CommandPass::logSuccess(int logState) {
+void CommandPass::sendLogState(int logState, SocketPeer *socketPeer) {
   if (logState == LOGGED) {
-    printMessage("230 " + loginSuccess);
+    sendMessage("230 " + loginSuccess, socketPeer);
   } else {
-    printMessage("530 " + loginFailed);
+    sendMessage("530 " + loginFailed, socketPeer);
   }
 }

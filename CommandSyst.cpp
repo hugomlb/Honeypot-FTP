@@ -10,12 +10,12 @@ CommandSyst::CommandSyst(User* aUser, ServerConfiguration* configuration):
 
 void CommandSyst::execute(std::string argument, SocketPeer* socketPeer) {
   if (argument.empty()) {
-    systemInformation();
+    systemInformation(socketPeer);
   }
 }
 
-void CommandSyst::systemInformation() {
+void CommandSyst::systemInformation(SocketPeer* socketPeer) {
   if (user -> isLogged(this)) {
-    printMessage("215 " + systemInfo);
+    sendMessage("215 " + systemInfo, socketPeer);
   }
 }

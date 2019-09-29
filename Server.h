@@ -28,7 +28,7 @@ class Server {
 
     void run();
 
-    void executeCommand(const std::string& commandCode, std::string argument);
+    Command* findCommand(const std::string& commandCode);
 
     ~Server();
 };

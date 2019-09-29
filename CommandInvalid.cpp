@@ -7,5 +7,5 @@ CommandInvalid::CommandInvalid(ServerConfiguration *configuration):
 }
 
 void CommandInvalid::execute(std::string argument, SocketPeer* socketPeer) {
-  printMessage("500 " + unknownCommand);
+  sendMessage("500 " + unknownCommand, socketPeer);
 }

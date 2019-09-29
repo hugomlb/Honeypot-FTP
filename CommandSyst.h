@@ -9,7 +9,7 @@ class CommandSyst: public Command {
     User* user;
     std::string systemInfo;
 
-    void systemInformation();
+    void systemInformation(SocketPeer* socketPeer);
   public:
     explicit CommandSyst(User* aUser, ServerConfiguration* configuration);
 
