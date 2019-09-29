@@ -7,6 +7,8 @@
 class ServerProxy {
   private:
     SocketActive socketActive;
+
+    std::string getAnswer();
   public:
     ServerProxy();
 
