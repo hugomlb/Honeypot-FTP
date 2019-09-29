@@ -7,6 +7,20 @@ SocketPeer::SocketPeer(int aFd) {
   fd = aFd;
 }
 
+SocketPeer::SocketPeer(SocketPeer &&other) {
+  this -> fd = other.fd;
+  other.fd = -1;
+}
+
+SocketPeer &SocketPeer::operator=(SocketPeer &&other) {
+  if (this == &other) {
+    return *this;
+  }
+  this -> fd = other.fd;
+  other.fd = -1;
+  return *this;
+}
+
 void SocketPeer::send(std::string message) {
   int operationState;
   bool socketValid = true;

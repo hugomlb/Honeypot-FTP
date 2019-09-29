@@ -1,26 +1,30 @@
 #include <iostream>
-#include <sstream>
+#include <utility>
 #include "Server.h"
 #include "CommandWelcome.h"
 #include "Command.h"
+#include "ClientProxy.h"
+
 
 Server::Server() : user(&configuration), commands(&user, &directories,
     &configuration) {
-  CommandWelcome command(&configuration);
-  command.execute("");
+  socketPassive.bind();
+  socketPassive.listen();
+  lastCommandCode = "WELCOME";
 }
 
-void Server::executeCommand(const std::string& command) {
-  std::string commandCode;
-  std::string commandArgument;
-  if (command.find_first_of(' ') != std::string::npos) {
-    std::istringstream test(command);
-    getline(test, commandCode, ' ');
-    getline(test, commandArgument);
-  } else {
-    commandCode = command;
+void Server::run() {
+  SocketPeer socketPeer = std::move(socketPassive.acceptClient());
+  ClientProxy clientProxy(this);
+  CommandWelcome command(&configuration);
+  command.execute("");
+  while (lastCommandCode != "QUIT") {
+    clientProxy.receiveMessage(&socketPeer);
   }
-  commands.findAndExecute(commandCode, commandArgument);
+}
+
+void Server::executeCommand(const std::string& commandCode, std::string commandArgument) {
+  commands.findAndExecute(commandCode, std::move(commandArgument));
   user.lastCommandWas(commandCode);
 }
 

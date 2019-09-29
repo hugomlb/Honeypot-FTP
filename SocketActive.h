@@ -4,11 +4,10 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
+#include "SocketPeer.h"
 
-class SocketActive {
+class SocketActive: public SocketPeer {
   private:
-    int fd;
-
     int getConnection(struct addrinfo* ptr);
   public:
     SocketActive();

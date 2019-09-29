@@ -6,9 +6,11 @@
 
 class ClientProxy {
   private:
-    Server server;
+    Server* server;
+
   public:
-    void send(const std::string& aCommand);
+    explicit ClientProxy(Server* server);
+    void receiveMessage(SocketPeer* socketPeer);
 };
 
 

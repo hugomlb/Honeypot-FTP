@@ -5,8 +5,7 @@
 #include <unistd.h>
 #include "SocketActive.h"
 
-SocketActive::SocketActive() {
-  fd = -1;
+SocketActive::SocketActive(): SocketPeer(-1) {
 }
 
 void SocketActive::connect() {
@@ -45,8 +44,8 @@ int SocketActive::getConnection(struct addrinfo *result) {
 }
 
 SocketActive::~SocketActive() {
-  shutdown(fd, SHUT_RDWR);
-  close(fd);
+  //shutdown(fd, SHUT_RDWR);
+  //close(fd);
 }
 
 /*

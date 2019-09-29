@@ -1,9 +1,21 @@
 #include <sstream>
 #include "ClientProxy.h"
 
-void ClientProxy::send(const std::string& aCommand) {
-  std::istringstream command(aCommand);
-  std::string commandToExecute;
-  getline(command, commandToExecute);
-  server.executeCommand(commandToExecute);
+ClientProxy::ClientProxy(Server *server) {
+  this -> server = server;
+}
+
+void ClientProxy::receiveMessage(SocketPeer* socketPeer) {
+  std::string commandCode;
+  std::string commandArgument;
+  std::string aCommand;
+  socketPeer -> receive(&aCommand);
+  if (aCommand.find_first_of(' ') != std::string::npos) {
+    std::istringstream test(aCommand);
+    getline(test, commandCode, ' ');
+    getline(test, commandArgument);
+  } else {
+    commandCode = aCommand;
+  }
+  server -> executeCommand(commandCode, commandArgument);
 }

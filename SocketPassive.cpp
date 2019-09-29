@@ -58,12 +58,13 @@ void SocketPassive::listen() {
   }
 }
 
-void SocketPassive::acceptClient() {
-  fd = accept(fd, nullptr, nullptr); //CREAR Y DEVOLVER POR MVSEM UN SOCKETPEER
+SocketPeer SocketPassive::acceptClient() {
+  int aFd = accept(fd, nullptr, nullptr); //CREAR Y DEVOLVER POR MVSEM UN SOCKETPEER
   // leer man de accept
-  if (fd == -1) {
+  if (aFd == -1) {
     printf("Error: %s\n", strerror(errno));
   }
+  return std::move(SocketPeer(aFd));
 }
 
 SocketPassive::~SocketPassive() {

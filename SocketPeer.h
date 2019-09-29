@@ -4,10 +4,14 @@
 #include <string>
 
 class SocketPeer {
-  private:
+  protected:
     int fd;
   public:
     explicit SocketPeer(int aFd);
+
+    SocketPeer(SocketPeer&& other);
+
+    SocketPeer& operator=(SocketPeer&& other);
 
     void send(std::string message);
 

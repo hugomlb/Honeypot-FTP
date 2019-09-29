@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
+#include "SocketPeer.h"
 
 class SocketPassive {
   private:
@@ -17,7 +18,7 @@ class SocketPassive {
 
     void listen();
 
-    void acceptClient();
+    SocketPeer acceptClient();
 
     ~SocketPassive();
 };

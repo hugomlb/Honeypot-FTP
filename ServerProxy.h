@@ -2,11 +2,14 @@
 #define _SERVER_PROXY_H_
 
 #include "ClientProxy.h"
+#include "SocketActive.h"
 
 class ServerProxy {
   private:
-    ClientProxy clientProxy;
+    SocketActive socketActive;
   public:
+    ServerProxy();
+
     void executeCommand(std::string aCommand);
 };
 

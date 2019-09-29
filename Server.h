@@ -6,6 +6,7 @@
 #include "User.h"
 #include "DirectorySet.h"
 #include "MapOfCommands.h"
+#include "SocketPassive.h"
 
 class Server {
   //Al recibir una 'q' de entrada standar, el servidor debe cerrarse
@@ -18,11 +19,16 @@ class Server {
     User user;
     DirectorySet directories;
     MapOfCommands commands;
+    SocketPassive socketPassive;
+    std::string lastCommandCode;
+
 
   public:
     Server();
 
-    void executeCommand(const std::string& command);
+    void run();
+
+    void executeCommand(const std::string& commandCode, std::string argument);
 
     ~Server();
 };
