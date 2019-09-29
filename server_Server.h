@@ -7,23 +7,22 @@
 #include "server_DirectorySet.h"
 #include "server_MapOfCommands.h"
 #include "server_SocketPassive.h"
+#include "common_Thread.h"
 
-class server_Server {
+class server_Server: public common_Thread {
   //Al recibir una 'q' de entrada standar, el servidor debe cerrarse
   private:
     server_ServerConfiguration configuration;
-    server_User user;
     server_DirectorySet directories;
-    server_MapOfCommands commands;
     server_SocketPassive socketPassive;
-    std::string lastCommandCode;
+    bool keepRunning;
 
   public:
     explicit server_Server(const char* aService, const char* configurationFile);
 
     void run();
 
-    server_Command* findCommand(const std::string& commandCode);
+    void stop(); //MEJORAR
 
     ~server_Server();
 };

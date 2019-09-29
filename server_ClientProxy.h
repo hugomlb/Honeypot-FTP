@@ -6,11 +6,10 @@
 
 class server_ClientProxy {
   private:
-    server_Server* server;
     common_SocketPeer socketPeer;
 
   public:
-    explicit server_ClientProxy(server_Server* server, common_SocketPeer aSocketPeer);
+    explicit server_ClientProxy(common_SocketPeer aSocketPeer);
 
     void receiveMessage(std::string* received);
 

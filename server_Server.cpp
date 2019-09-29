@@ -3,37 +3,29 @@
 #include "server_Server.h"
 #include "server_CommandWelcome.h"
 #include "server_Command.h"
-#include "server_ClientProxy.h"
+#include "server_ConnectedClient.h"
+#include "server_ConnectedClientVector.h"
 
 
 server_Server::server_Server(const char* aService, const char* configurationFile):
-    configuration(configurationFile), user(&configuration),
-    commands(&user, &directories,&configuration) {
+    configuration(configurationFile) {
   socketPassive.bind(aService);
   socketPassive.listen();
-  lastCommandCode = "WELCOME";
+  keepRunning = false;
 }
 
 void server_Server::run() {
-  common_SocketPeer socketPeer = std::move(socketPassive.acceptClient());
-  server_ClientProxy clientProxy(this, std::move(socketPeer));
+  keepRunning = true;
   server_CommandWelcome command(&configuration);
-  clientProxy.execute(&command, "");
-  while (lastCommandCode != "QUIT") {
-    std::string clientMessage;
-    std::string commandCode;
-    std::string commandArgument;
-    clientProxy.receiveMessage(&clientMessage);
-    clientProxy.decode(clientMessage, &commandCode, &commandArgument);
-    server_Command* aCommand = findCommand(commandCode);
-    clientProxy.execute(aCommand, commandArgument);
-    user.lastCommandWas(commandCode);
-    lastCommandCode = commandCode;
+  server_ConnectedClientVector clients(&command);
+  while (keepRunning) {
+    common_SocketPeer socketPeer = std::move(socketPassive.acceptClient());
+    clients.add(new server_ConnectedClient(&configuration, &directories, std::move(socketPeer)));
   }
 }
 
-server_Command* server_Server::findCommand(const std::string& commandCode) {
-  return commands.find(commandCode);
+void server_Server::stop() {
+  keepRunning = false;
 }
 
 server_Server::~server_Server() {

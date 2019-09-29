@@ -1,8 +1,7 @@
 #include <sstream>
 #include "server_ClientProxy.h"
 
-server_ClientProxy::server_ClientProxy(server_Server *server, common_SocketPeer aSocketPeer): socketPeer(std::move(aSocketPeer)) {
-  this -> server = server;
+server_ClientProxy::server_ClientProxy(common_SocketPeer aSocketPeer): socketPeer(std::move(aSocketPeer)) {
 }
 
 void server_ClientProxy::receiveMessage(std::string* received) {
