@@ -19,8 +19,6 @@ class Server {
     DirectorySet directories;
     MapOfCommands commands;
 
-   // void help(); //Hacer
-
   public:
     Server();
 

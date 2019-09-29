@@ -9,6 +9,7 @@ class CommandInvalid : public Command {
     std::string unknownCommand;
   public:
     explicit CommandInvalid(ServerConfiguration* configuration);
+
     void execute(std::string argument) override;
 };
 
