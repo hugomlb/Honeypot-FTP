@@ -13,18 +13,11 @@ void server_ConnectedClientVector::add(server_ConnectedClient *client) {
 }
 
 server_ConnectedClientVector::~server_ConnectedClientVector() {
-
-  std::cout << "Joineando Clientes" << std::endl;
   for (int i = 0; i < (int) clients.size(); i++) {
     clients[i] -> join();
     delete clients[i];
   }
 }
 
-void server_ConnectedClientVector::kill() {/*
-  std::cout << "Joineando Clientes" << std::endl;
-  for (int i = 0; i < (int) clients.size(); i++) {
-    clients[i] -> join();
-    delete clients[i];
-  }*/
+void server_ConnectedClientVector::kill() {
 }

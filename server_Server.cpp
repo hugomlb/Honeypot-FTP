@@ -4,12 +4,13 @@
 #include "server_CommandWelcome.h"
 #include "server_Command.h"
 #include "server_ConnectedClient.h"
+#include "server_SocketPassiveException.h"
 
 
 server_Server::server_Server(const char* aService, const char* configurationFile,
-    server_SocketPassive* socketPassive): configuration(configurationFile), welcome(&configuration),
-    clients(&welcome){
-  this -> socketPassive = socketPassive;
+    server_SocketPassive* aSocketPassive): configuration(configurationFile),
+    welcome(&configuration) /*clients(&welcome)*/ {
+  this -> socketPassive = aSocketPassive;
   this -> socketPassive -> bind(aService);
   this -> socketPassive -> listen();
   keepRunning = false;
@@ -19,9 +20,13 @@ void server_Server::run() {
   keepRunning = true;
   server_CommandWelcome command(&configuration);
   while (keepRunning) {
-    common_SocketPeer socketPeer = std::move(socketPassive -> acceptClient());
-    if (keepRunning) {
-      clients.add(new server_ConnectedClient(&configuration, &directories, std::move(socketPeer)));
+    try {
+      common_SocketPeer socketPeer = std::move(socketPassive -> acceptClient());
+      if (keepRunning) {
+        //clients.add(new server_ConnectedClient(&configuration, &directories, std::move(socketPeer)));
+      }
+    } catch (server_SocketPassiveException &e) {
+      keepRunning = false;
     }
   }
 }

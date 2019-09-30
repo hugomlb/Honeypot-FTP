@@ -1,10 +1,12 @@
 #include "server_SocketPassive.h"
+#include "server_SocketPassiveException.h"
 #include <sys/socket.h>
 #include <netdb.h>
 #include <cstring>
 #include <cstdio>
 #include <cerrno>
 #include <unistd.h>
+#include <iostream>
 
 server_SocketPassive::server_SocketPassive() {
   fd = -1;
@@ -18,7 +20,6 @@ void server_SocketPassive::bind(const char *aService) {
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = AI_PASSIVE;
   int errCheck = getaddrinfo(nullptr, aService, &hints, &rst); //SERVICIO HARCODEADO*****************
-  //leer el man de getaddrinfo
   if (errCheck != 0) {
     printf("Error in getaddrinfo: %s\n", gai_strerror(errCheck));
   }
@@ -59,10 +60,9 @@ void server_SocketPassive::listen() {
 }
 
 common_SocketPeer server_SocketPassive::acceptClient() {
-  int aFd = accept(fd, nullptr, nullptr); //CREAR Y DEVOLVER POR MVSEM UN SOCKETPEER
-  // leer man de accept
+  int aFd = accept(fd, nullptr, nullptr);
   if (aFd == -1) {
-    printf("Error: %s\n", strerror(errno));
+    throw server_SocketPassiveException("ACCEPT ERROR");
   }
   return std::move(common_SocketPeer(aFd));
 }

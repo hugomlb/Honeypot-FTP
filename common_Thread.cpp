@@ -22,5 +22,4 @@ common_Thread& common_Thread::operator=(common_Thread &&other) {
 }
 
 common_Thread::~common_Thread() {
-  std::cout << "Joining de clase Thread" << std::endl;
 }
