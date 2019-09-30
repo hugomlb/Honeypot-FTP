@@ -9,7 +9,7 @@
 
 server_Server::server_Server(const char* aService, const char* configurationFile,
     server_SocketPassive* aSocketPassive): configuration(configurationFile),
-    welcome(&configuration) /*clients(&welcome)*/ {
+    welcome(&configuration), clients(&welcome) {
   this -> socketPassive = aSocketPassive;
   this -> socketPassive -> bind(aService);
   this -> socketPassive -> listen();
@@ -23,7 +23,7 @@ void server_Server::run() {
     try {
       common_SocketPeer socketPeer = std::move(socketPassive -> acceptClient());
       if (keepRunning) {
-        //clients.add(new server_ConnectedClient(&configuration, &directories, std::move(socketPeer)));
+        clients.add(new server_ConnectedClient(&configuration, &directories, std::move(socketPeer)));
       }
     } catch (server_SocketPassiveException &e) {
       keepRunning = false;
