@@ -4,11 +4,11 @@
 #include "server_CommandInvalid.h"
 
 server_MapOfCommands::server_MapOfCommands(server_User *aUser, server_DirectorySet *directories,
-                                           server_ServerConfiguration* config): list(directories, aUser, config),
-                                                                                make(directories, aUser, config), remove(directories, aUser, config),
-                                                                                user(aUser, config), pass(aUser, config), syst(aUser, config),
-                                                                                currentDirectory(aUser, config), quit(config), invalid(config),
-                                                                                help(config) {
+    server_ServerConfiguration* config): list(directories, aUser, config),
+    make(directories, aUser, config), remove(directories, aUser, config),
+    user(aUser, config), pass(aUser, config), syst(aUser, config),
+    currentDirectory(aUser, config), quit(config), invalid(config),
+    help(aUser, config) {
   commandMap["LIST"] = &list;
   commandMap["QUIT"] = &quit;
   commandMap["MKD"] = &make;

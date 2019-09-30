@@ -21,7 +21,8 @@ void server_CommandMKD::makeDirectory(const std::string& aDirectoryName, common_
   if (user -> isLogged(this, socketPeer)) {
     try {
       directories -> addDirectory(aDirectoryName);
-      sendMessage("257 " + aDirectoryName + " " + mkdSuccess, socketPeer);
+      std::string commandCode = "257 ";
+      sendMessage(commandCode + '"' + aDirectoryName + '"' + " " + mkdSuccess, socketPeer);
     } catch (server_DirectorySetException &e) {
       sendMessage("550 " + mkdFailed, socketPeer);
     }

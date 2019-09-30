@@ -21,7 +21,8 @@ void server_CommandRMD::removeDirectory(const std::string& aDirectoryName, commo
   if(user -> isLogged(this, socketPeer)) {
     try {
       directories -> removeDirectory(aDirectoryName);
-      sendMessage("250 " + rmdSuccess, socketPeer);
+      std::string commandCode = "250 ";
+      sendMessage(commandCode + '"' + aDirectoryName + '"' + " " + rmdSuccess, socketPeer);
     } catch (server_DirectorySetException &e) {
       sendMessage("550 " + rmdFailed, socketPeer);
     }

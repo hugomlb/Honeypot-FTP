@@ -7,5 +7,5 @@ server_CommandWelcome::server_CommandWelcome(server_ServerConfiguration *configu
 }
 
 void server_CommandWelcome::execute(std::string argument, common_SocketPeer* socketPeer) {
-  sendMessage("230 " + newClient, socketPeer);
+  sendMessage("220 " + newClient, socketPeer);
 }
