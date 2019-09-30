@@ -1,5 +1,5 @@
-#ifndef TP2_LOCK_H
-#define TP2_LOCK_H
+#ifndef _LOCK_H_
+#define _LOCK_H_
 
 #include <mutex>
 

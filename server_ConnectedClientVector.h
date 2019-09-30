@@ -1,5 +1,5 @@
-#ifndef _SERVER_CONNECTED_CLIENT_VECTOR_H_
-#define _SERVER_CONNECTED_CLIENT_VECTOR_H_
+#ifndef _CONNECTED_CLIENT_VECTOR_H_
+#define _CONNECTED_CLIENT_VECTOR_H_
 
 #include <vector>
 #include "server_ConnectedClient.h"

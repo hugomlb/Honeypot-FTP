@@ -6,7 +6,6 @@
 #include <cstdio>
 #include <cerrno>
 #include <unistd.h>
-#include <iostream>
 
 server_SocketPassive::server_SocketPassive() {
   fd = -1;
