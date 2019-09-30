@@ -4,9 +4,11 @@
 #include <set>
 #include <string>
 #include <list>
+#include <mutex>
 
-class server_DirectorySet {
+class server_ProtectedDirectorySet {
   private:
+    std::mutex mutex;
     std::set<std::string> directories;
     std::set<std::string>::iterator iterator;
 

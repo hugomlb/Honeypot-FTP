@@ -1,7 +1,7 @@
 #include "server_CommandList.h"
 #include "server_CommandInvalid.h"
 
-server_CommandList::server_CommandList(server_DirectorySet *directorySet, server_User* aUser,
+server_CommandList::server_CommandList(server_ProtectedDirectorySet *directorySet, server_User* aUser,
                                        server_ServerConfiguration* configuration): server_Command(configuration) {
   directories = directorySet;
   user = aUser;

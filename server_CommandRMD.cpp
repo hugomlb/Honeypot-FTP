@@ -3,7 +3,7 @@
 #include "server_CommandInvalid.h"
 #include "common_SocketPeer.h"
 
-server_CommandRMD::server_CommandRMD(server_DirectorySet* directorySet, server_User* aUser,
+server_CommandRMD::server_CommandRMD(server_ProtectedDirectorySet* directorySet, server_User* aUser,
                                      server_ServerConfiguration* configuration): server_Command(configuration) {
   directories = directorySet;
   user = aUser;

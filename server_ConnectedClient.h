@@ -19,7 +19,7 @@ class server_ConnectedClient: public common_Thread {
     server_Command* findCommand(std::string comandCode);
   public:
     server_ConnectedClient(server_ServerConfiguration* configuration,
-        server_DirectorySet* directories, common_SocketPeer socketPeer);
+                           server_ProtectedDirectorySet* directories, common_SocketPeer socketPeer);
 
     void welcomenClient(server_CommandWelcome* welcome);
 

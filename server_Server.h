@@ -3,9 +3,8 @@
 
 #include <string>
 #include <unordered_map>
-#include <mutex>
 #include <atomic>
-#include "server_DirectorySet.h"
+#include "server_ProtectedDirectorySet.h"
 #include "server_MapOfCommands.h"
 #include "server_SocketPassive.h"
 #include "common_Thread.h"
@@ -13,9 +12,8 @@
 
 class server_Server: public common_Thread {
   private:
-    std::mutex mutex;
     server_ServerConfiguration configuration;
-    server_DirectorySet directories;
+    server_ProtectedDirectorySet directories;
     server_SocketPassive* socketPassive;
     std::atomic<bool> keepRunning{};
     server_CommandWelcome welcome;
@@ -27,7 +25,7 @@ class server_Server: public common_Thread {
 
     void run();
 
-    void stop(); //MEJORAR
+    void stop();
 
     ~server_Server();
 };

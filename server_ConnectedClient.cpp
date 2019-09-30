@@ -2,7 +2,7 @@
 #include "common_SocketPeerException.h"
 
 server_ConnectedClient::server_ConnectedClient(server_ServerConfiguration *configuration,
-    server_DirectorySet* directories, common_SocketPeer socketPeer):
+                                               server_ProtectedDirectorySet* directories, common_SocketPeer socketPeer):
     user(configuration), commands(&user, directories, configuration), clientProxy(std::move(socketPeer)){
   lastCommandCode = "";
   isTalking = false;
