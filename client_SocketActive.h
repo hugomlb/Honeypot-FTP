@@ -8,7 +8,7 @@
 
 class SocketActive: public common_SocketPeer {
   private:
-    int getConnection(struct addrinfo* ptr);
+    static int getConnection(struct addrinfo* ptr);
   public:
     SocketActive();
 

@@ -1,24 +1,33 @@
-#ifndef _CLIENT_PROXY_H_
-#define _CLIENT_PROXY_H_
+#ifndef _SERVER_CONNECTED_CLIENT_H_
+#define _SERVER_CONNECTED_CLIENT_H_
 
-#include "common_SocketPeer.h"
-#include "server_Command.h"
-#include <string>
+#include <atomic>
+#include "common_Thread.h"
+#include "server_User.h"
+#include "server_MapOfCommands.h"
+#include "server_CommandWelcome.h"
+#include "server_ComunicationProtocol.h"
 
-class server_ClientProxy {
+class server_ClientProxy: public common_Thread {
   private:
-    common_SocketPeer socketPeer;
+    std::atomic<bool> isTalking{};
+    server_User user;
+    std::string lastCommandCode;
+    server_MapOfCommands commands;
+    server_ComunicationProtocol clientProxy;
 
+    server_Command* findCommand(std::string comandCode);
   public:
-    explicit server_ClientProxy(common_SocketPeer aSocketPeer);
+    server_ClientProxy(server_ServerConfiguration* configuration,
+        server_ProtectedDirectorySet* directories, common_SocketPeer socketPeer);
 
-    void receiveMessage(std::string* received);
-
-    void decode(std::string command, std::string* comandCode, std::string* argument);
-
-    void execute(server_Command* command, std::string argument);
+    void welcomenClient(server_CommandWelcome* welcome);
 
     void kill();
+
+    bool isDead();
+
+    void run() override;
 };
 
 

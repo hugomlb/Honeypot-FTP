@@ -14,8 +14,6 @@ class server_Command {
 
     virtual void execute(std::string argument, common_SocketPeer* socketPeer) = 0;
 
-    static void printMessage(const std::string& aMessage);
-
     void askForLogin(common_SocketPeer* socketPeer);
 
     void sendMessage(std::string aMessage, common_SocketPeer* socketPeer);

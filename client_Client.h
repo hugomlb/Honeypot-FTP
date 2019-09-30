@@ -8,6 +8,7 @@ class client_Client {
     client_Client();
 
     static void run(const char* hostName, const char* service);
+
     ~client_Client();
 };
 

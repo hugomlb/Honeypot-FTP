@@ -17,7 +17,7 @@ class server_CommandMKD: public server_Command {
     void makeDirectory(const std::string& aDirectoryName, common_SocketPeer* socketPeer);
   public:
     explicit server_CommandMKD(server_ProtectedDirectorySet* directorySet, server_User* aUser,
-                               server_ServerConfiguration* configuration);
+        server_ServerConfiguration* configuration);
 
     void execute(std::string argument, common_SocketPeer* socketPeer) override;
 };

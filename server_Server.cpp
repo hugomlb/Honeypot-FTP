@@ -3,7 +3,7 @@
 #include "server_Server.h"
 #include "server_CommandWelcome.h"
 #include "server_Command.h"
-#include "server_ConnectedClient.h"
+#include "server_ClientProxy.h"
 #include "server_SocketPassiveException.h"
 
 
@@ -23,7 +23,7 @@ void server_Server::run() {
     try {
       common_SocketPeer socketPeer = std::move(socketPassive -> acceptClient());
       if (keepRunning) {
-        clients.add(new server_ConnectedClient(&configuration, &directories, std::move(socketPeer)));
+        clients.add(new server_ClientProxy(&configuration, &directories, std::move(socketPeer)));
       }
     } catch (server_SocketPassiveException &e) {
       keepRunning = false;

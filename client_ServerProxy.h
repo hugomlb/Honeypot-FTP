@@ -1,7 +1,7 @@
 #ifndef _SERVER_PROXY_H_
 #define _SERVER_PROXY_H_
 
-#include "server_ClientProxy.h"
+#include "server_ComunicationProtocol.h"
 #include "client_SocketActive.h"
 
 class client_ServerProxy {

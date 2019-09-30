@@ -8,7 +8,7 @@
 #include "server_MapOfCommands.h"
 #include "server_SocketPassive.h"
 #include "common_Thread.h"
-#include "server_ConnectedClientVector.h"
+#include "server_ClientProxyVector.h"
 
 class server_Server: public common_Thread {
   private:
@@ -17,7 +17,7 @@ class server_Server: public common_Thread {
     server_SocketPassive* socketPassive;
     std::atomic<bool> keepRunning{};
     server_CommandWelcome welcome;
-    server_ConnectedClientVector clients;
+    server_ClientProxyVector clients;
 
   public:
     explicit server_Server(const char* aService, const char* configurationFile,

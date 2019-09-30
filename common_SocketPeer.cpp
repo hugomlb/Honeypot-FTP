@@ -1,4 +1,3 @@
-#include <cstring>
 #include <sys/socket.h>
 #include <unistd.h>
 #include "common_SocketPeer.h"
@@ -46,8 +45,7 @@ void common_SocketPeer::receive(std::string *answer) {
     if (operationState == 0) {
       throw common_SocketPeerException("Socket Closed");
     } else if (operationState == -1) {
-      //printf("Error: %s\n", strerror(errno));
-      throw common_SocketPeerException("SOCKET CERRADO FORZOZAMENTE");
+      throw common_SocketPeerException("SOCKET CERRADO ABRUPTAMENTE");
     }
     *answer += currentChar;
   }

@@ -5,10 +5,6 @@ server_Command::server_Command(server_ServerConfiguration* configuration) {
   clientNotLogged = configuration -> getValueOf("clientNotLogged");
 }
 
-void server_Command::printMessage(const std::string& aMessage) {
-  std::cout << aMessage << std::endl;
-}
-
 void server_Command::askForLogin(common_SocketPeer* socketPeer) {
   sendMessage("530 " + clientNotLogged, socketPeer);
 }

@@ -12,7 +12,11 @@ void client_Client::run(const char* hostName, const char* service) {
   try {
     while (command != "QUIT" ) {
       getline(std::cin, command);
-      server.executeCommand(command);
+      if (!std::cin.eof()){
+        server.executeCommand(command);
+      } else {
+        command = "QUIT";
+      }
     }
   } catch (common_SocketPeerException &e){
   }

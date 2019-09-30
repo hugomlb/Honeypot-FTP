@@ -18,7 +18,7 @@ void server_SocketPassive::bind(const char *aService) {
   hints.ai_family = AF_INET;
   hints.ai_socktype = SOCK_STREAM;
   hints.ai_flags = AI_PASSIVE;
-  int errCheck = getaddrinfo(nullptr, aService, &hints, &rst); //SERVICIO HARCODEADO*****************
+  int errCheck = getaddrinfo(nullptr, aService, &hints, &rst);
   if (errCheck != 0) {
     printf("Error in getaddrinfo: %s\n", gai_strerror(errCheck));
   }
