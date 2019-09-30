@@ -13,7 +13,9 @@ class server_ConnectedClientVector {
     explicit server_ConnectedClientVector(server_CommandWelcome* command);
 
     void add(server_ConnectedClient* client);
-    void kill();
+
+    void killAll();
+
     ~server_ConnectedClientVector();
 };
 

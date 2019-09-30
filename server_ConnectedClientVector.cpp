@@ -12,6 +12,18 @@ void server_ConnectedClientVector::add(server_ConnectedClient *client) {
   clients.push_back(client);
 }
 
+void server_ConnectedClientVector::killAll() {
+  int i = 0;
+  while(!clients.empty()) {
+    if (!clients[i] -> isDead()) {
+      clients[i] -> kill();
+    }
+    clients[i] -> join();
+    delete clients[i];
+    clients.erase(clients.begin());
+  }
+}
+
 server_ConnectedClientVector::~server_ConnectedClientVector() {
   if (!clients.empty()) {
     for (int i = 0; i < (int) clients.size(); i++) {
@@ -19,7 +31,4 @@ server_ConnectedClientVector::~server_ConnectedClientVector() {
       delete clients[i];
     }
   }
-}
-
-void server_ConnectedClientVector::kill() {
 }

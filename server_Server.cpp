@@ -33,6 +33,7 @@ void server_Server::run() {
 
 void server_Server::stop() {
   keepRunning = false;
+  clients.killAll();
 }
 
 server_Server::~server_Server() {

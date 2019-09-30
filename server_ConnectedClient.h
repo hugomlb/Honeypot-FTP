@@ -23,6 +23,8 @@ class server_ConnectedClient: public common_Thread {
 
     void welcomenClient(server_CommandWelcome* welcome);
 
+    void kill();
+
     bool isDead();
 
     void run() override;

@@ -35,7 +35,7 @@ int SocketActive::getConnection(struct addrinfo *result) {
       int errcheck = ::connect(aFd, ptr -> ai_addr, ptr -> ai_addrlen);
       if (errcheck == -1) {
         printf("Error: %s\n", strerror(errno));
-        close(aFd);
+        ::close(aFd);
       }
       connected = (aFd != -1);
     }

@@ -17,6 +17,8 @@ class common_SocketPeer {
 
     void receive(std::string* answer);
 
+    void close();
+
     ~common_SocketPeer();
 };
 

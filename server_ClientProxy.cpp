@@ -22,3 +22,7 @@ void server_ClientProxy::decode(std::string aCommand, std::string *commandCode, 
 void server_ClientProxy::execute(server_Command *command, std::string argument) {
   command -> execute(std::move(argument), &socketPeer);
 }
+
+void server_ClientProxy::kill() {
+  socketPeer.close();
+}
