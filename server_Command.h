@@ -18,7 +18,8 @@ class server_Command {
 
     void askForLogin(common_SocketPeer* socketPeer);
 
-    static void sendMessage(const std::string& aMessage, common_SocketPeer* socketPeer);
+    static void sendMessage(const std::string& aMessage,
+        common_SocketPeer* socketPeer);
 
     ~server_Command() = default;
 };

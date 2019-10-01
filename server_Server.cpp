@@ -7,8 +7,9 @@
 #include "server_SocketPassiveException.h"
 
 
-server_Server::server_Server(const char* aService, const char* configurationFile,
-    server_SocketPassive* aSocketPassive): configuration(configurationFile) {
+server_Server::server_Server(const char* aService, const char*
+    configurationFile, server_SocketPassive* aSocketPassive):
+    configuration(configurationFile) {
   this -> socketPassive = aSocketPassive;
   this -> socketPassive -> bind(aService);
   this -> socketPassive -> listen();
@@ -23,7 +24,8 @@ void server_Server::run() {
     while (keepRunning) {
       common_SocketPeer socketPeer = std::move(socketPassive -> acceptClient());
       if (keepRunning) {
-        clients.push_back(new server_ClientProxy(&configuration, &commands, std::move(socketPeer)));
+        clients.push_back(new server_ClientProxy(&configuration, &commands,
+            std::move(socketPeer)));
         clients.back() -> welcomenClient(&welcome);
         clients.back() -> start();
       }

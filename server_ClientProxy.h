@@ -32,5 +32,4 @@ class server_ClientProxy: public server_Thread {
     void run() override;
 };
 
-
 #endif

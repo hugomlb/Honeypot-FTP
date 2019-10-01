@@ -1,7 +1,7 @@
 #include "server_CommandUser.h"
 
-server_CommandUser::server_CommandUser(server_ServerConfiguration* configuration):
-    server_Command(configuration){
+server_CommandUser::server_CommandUser(server_ServerConfiguration*
+    configuration): server_Command(configuration) {
   passRequired = configuration -> getValueOf("passRequired");
 }
 

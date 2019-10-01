@@ -10,7 +10,8 @@ class client_ClientCommunicationProtocol {
     std::string getAnswer();
 
   public:
-    client_ClientCommunicationProtocol(const char* hostName, const char* service);
+    client_ClientCommunicationProtocol(const char* hostName,
+        const char* service);
 
     void receiveMessage();
 

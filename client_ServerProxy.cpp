@@ -2,8 +2,8 @@
 #include <utility>
 #include "client_ServerProxy.h"
 
-client_ServerProxy::client_ServerProxy(const char* hostName, const char* service)
-    : communicationProtocol(hostName, service){
+client_ServerProxy::client_ServerProxy(const char* hostName,
+    const char* service): communicationProtocol(hostName, service){
   communicationProtocol.receiveMessage();
 }
 

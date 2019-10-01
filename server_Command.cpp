@@ -9,6 +9,7 @@ void server_Command::askForLogin(common_SocketPeer* socketPeer) {
   sendMessage("530 " + clientNotLogged, socketPeer);
 }
 
-void server_Command::sendMessage(const std::string& aMessage, common_SocketPeer* socketPeer) {
+void server_Command::sendMessage(const std::string& aMessage,
+    common_SocketPeer* socketPeer) {
   socketPeer -> send( aMessage + "\n");
 }

@@ -1,8 +1,8 @@
 #include "server_MapOfCommands.h"
 #include "server_CommandInvalid.h"
 
-server_MapOfCommands::server_MapOfCommands(server_ProtectedDirectorySet *directories,
-    server_ServerConfiguration* config): list(directories, config),
+server_MapOfCommands::server_MapOfCommands(server_ProtectedDirectorySet*
+    directories, server_ServerConfiguration* config): list(directories, config),
     make(directories, config), remove(directories, config),
     user(config), pass(config), syst(config),
     currentDirectory(config), quit(config), invalid(config),

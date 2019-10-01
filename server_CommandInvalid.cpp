@@ -1,8 +1,8 @@
 #include "server_CommandInvalid.h"
 #include "common_SocketPeer.h"
 
-server_CommandInvalid::server_CommandInvalid(server_ServerConfiguration *configuration):
-    server_Command(configuration) {
+server_CommandInvalid::server_CommandInvalid(server_ServerConfiguration*
+    configuration): server_Command(configuration) {
   unknownCommand = configuration -> getValueOf("unknownCommand");
 }
 

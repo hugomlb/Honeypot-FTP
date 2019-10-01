@@ -16,7 +16,8 @@ void server_CommandRMD::execute(std::string argument, server_User *user,
     try {
       directories -> removeDirectory(argument);
       std::string commandCode = "250 ";
-      sendMessage(commandCode + '"' + argument + '"' + " " + rmdSuccess, socketPeer);
+      sendMessage(commandCode + '"' + argument + '"' + " " + rmdSuccess,
+          socketPeer);
     } catch (server_ProtectedDirectorySetException &e) {
       sendMessage("550 " + rmdFailed, socketPeer);
     }

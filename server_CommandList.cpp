@@ -1,8 +1,9 @@
 #include "server_CommandList.h"
 #include "server_CommandInvalid.h"
 
-server_CommandList::server_CommandList(server_ProtectedDirectorySet *directorySet,
-    server_ServerConfiguration* configuration): server_Command(configuration) {
+server_CommandList::server_CommandList(server_ProtectedDirectorySet*
+    directorySet, server_ServerConfiguration* configuration):
+    server_Command(configuration) {
   directories = directorySet;
   listBegin = configuration -> getValueOf("listBegin");
   listEnd = configuration -> getValueOf("listEnd");

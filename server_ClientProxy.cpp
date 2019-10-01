@@ -2,9 +2,9 @@
 #include "server_ClientProxy.h"
 #include "common_SocketPeerException.h"
 
-server_ClientProxy::server_ClientProxy(server_ServerConfiguration *configuration,
+server_ClientProxy::server_ClientProxy(server_ServerConfiguration* config,
       server_MapOfCommands* mapOfCommands, common_SocketPeer socketPeer):
-    user(configuration), comunicationProtocol(std::move(socketPeer)){
+    user(config), comunicationProtocol(std::move(socketPeer)) {
   lastCommandCode = "";
   isTalking = true;
   commands = mapOfCommands;
