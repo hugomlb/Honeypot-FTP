@@ -25,3 +25,6 @@ void server_CommandList::execute(std::string argument, server_User *user,
     askForLogin(socketPeer);
   }
 }
+
+server_CommandList::~server_CommandList() {
+}

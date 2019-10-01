@@ -12,6 +12,8 @@ class server_CommandInvalid : public server_Command {
 
     void execute(std::string argument, server_User *user,
                  common_SocketPeer* socketPeer) override;
+
+    ~server_CommandInvalid();
 };
 
 #endif

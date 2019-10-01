@@ -1,7 +1,6 @@
 #ifndef _COMMAND_HELP_H_
 #define _COMMAND_HELP_H_
 
-
 #include <string>
 #include "server_Command.h"
 #include "server_User.h"
@@ -14,6 +13,8 @@ class server_CommandHelp: public server_Command {
 
     void execute(std::string argument, server_User* user,
                  common_SocketPeer* socketPeer) override;
+
+    ~server_CommandHelp();
 };
 
 

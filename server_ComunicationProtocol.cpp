@@ -28,3 +28,6 @@ void server_ComunicationProtocol::execute(server_Command* command, std::string
 void server_ComunicationProtocol::kill() {
   socketPeer.close();
 }
+
+server_ComunicationProtocol::~server_ComunicationProtocol() {
+}

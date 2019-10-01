@@ -48,3 +48,6 @@ void server_ClientProxy::welcomenClient(server_CommandWelcome *welcome) {
 bool server_ClientProxy::isDead() {
   return !(isTalking);
 }
+
+server_ClientProxy::~server_ClientProxy() {
+}

@@ -21,7 +21,7 @@ class server_Command {
     static void sendMessage(const std::string& aMessage,
         common_SocketPeer* socketPeer);
 
-    ~server_Command() = default;
+    ~server_Command();
 };
 
 #endif

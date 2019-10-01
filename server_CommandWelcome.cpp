@@ -10,3 +10,6 @@ void server_CommandWelcome::execute(std::string argument, server_User* user,
                                     common_SocketPeer* socketPeer) {
   sendMessage("220 " + newClient, socketPeer);
 }
+
+server_CommandWelcome::~server_CommandWelcome() {
+}

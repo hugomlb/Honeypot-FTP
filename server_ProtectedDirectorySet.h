@@ -19,6 +19,8 @@ class server_ProtectedDirectorySet {
     void removeDirectory(const std::string& directoryName);
 
     std::list<std::string> getDirectoryList();
+
+    ~server_ProtectedDirectorySet();
 };
 
 

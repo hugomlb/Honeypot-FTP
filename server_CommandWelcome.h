@@ -12,6 +12,8 @@ class server_CommandWelcome: public server_Command{
 
     void execute(std::string argument, server_User* user,
                  common_SocketPeer* socketPeer) override ;
+
+    ~server_CommandWelcome();
 };
 
 #endif

@@ -14,3 +14,6 @@ void server_CommandPWD::execute(std::string argument, server_User *user,
     askForLogin(socketPeer);
   }
 }
+
+server_CommandPWD::~server_CommandPWD() {
+}

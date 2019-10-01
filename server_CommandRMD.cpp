@@ -25,3 +25,6 @@ void server_CommandRMD::execute(std::string argument, server_User *user,
     askForLogin(socketPeer);
   }
 }
+
+server_CommandRMD::~server_CommandRMD() {
+}

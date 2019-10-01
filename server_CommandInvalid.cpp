@@ -10,3 +10,6 @@ void server_CommandInvalid::execute(std::string argument, server_User* user,
                                     common_SocketPeer* socketPeer) {
   sendMessage("530 " + unknownCommand, socketPeer);
 }
+
+server_CommandInvalid::~server_CommandInvalid() {
+}

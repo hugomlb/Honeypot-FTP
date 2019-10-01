@@ -18,6 +18,8 @@ class server_CommandPass: public server_Command {
 
     void execute(std::string argument, server_User *user,
                  common_SocketPeer *socketPeer) override;
+
+    ~server_CommandPass();
 };
 
 #endif

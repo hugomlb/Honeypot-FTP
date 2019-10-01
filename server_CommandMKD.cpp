@@ -25,3 +25,6 @@ void server_CommandMKD::execute(std::string argument, server_User *user,
     askForLogin(socketPeer);
   }
 }
+
+server_CommandMKD::~server_CommandMKD() {
+}

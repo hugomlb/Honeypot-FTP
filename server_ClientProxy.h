@@ -30,6 +30,8 @@ class server_ClientProxy: public server_Thread {
     bool isDead();
 
     void run() override;
+
+    ~server_ClientProxy();
 };
 
 #endif

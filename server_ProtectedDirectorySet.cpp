@@ -39,3 +39,6 @@ std::list<std::string> server_ProtectedDirectorySet::getDirectoryList() {
   }
   return listOfDirectories;
 }
+
+server_ProtectedDirectorySet::~server_ProtectedDirectorySet() {
+}

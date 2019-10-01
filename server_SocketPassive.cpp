@@ -3,8 +3,6 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <cstring>
-#include <cstdio>
-#include <cerrno>
 #include <unistd.h>
 
 server_SocketPassive::server_SocketPassive() {
@@ -20,7 +18,7 @@ void server_SocketPassive::bind(const char *aService) {
   hints.ai_flags = AI_PASSIVE;
   int errCheck = getaddrinfo(nullptr, aService, &hints, &rst);
   if (errCheck != 0) {
-    printf("Error in getaddrinfo: %s\n", gai_strerror(errCheck));
+    throw server_SocketPassiveException("Fallo Imprevisto en Bind");
   }
   fd = getBind(rst);
   freeaddrinfo(rst);
@@ -33,17 +31,15 @@ int server_SocketPassive::getBind(struct addrinfo *rst) {
   for (ptr = rst; ptr != nullptr && !binded; ptr = ptr -> ai_next) {
     aFd = socket(ptr -> ai_family, ptr -> ai_socktype, ptr -> ai_protocol);
     if (aFd == -1) {
-      printf("Error: %s\n", strerror(errno));
+      throw server_SocketPassiveException("FD Invalido");
     }
     int val = 1;
     int errCheck = setsockopt(aFd, SOL_SOCKET, SO_REUSEADDR, &val, sizeof(val));
     if (errCheck == -1) {
-      printf("Error: %s\n", strerror(errno));
       ::close(aFd);
     }
     errCheck = ::bind(aFd, ptr -> ai_addr, ptr -> ai_addrlen);
     if (errCheck == -1) {
-      printf("Error: %s\n", strerror(errno));
       ::close(aFd);
     }
     binded = (errCheck != -1);
@@ -54,7 +50,7 @@ int server_SocketPassive::getBind(struct addrinfo *rst) {
 void server_SocketPassive::listen() {
   int errCheck = ::listen(fd, 1);
   if (errCheck == -1) {
-    printf("Error: %s\n", strerror(errno));
+    throw server_SocketPassiveException("Fallo Imprevisto en Listen");
   }
 }
 

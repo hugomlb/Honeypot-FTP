@@ -1,9 +1,8 @@
 #include <netdb.h>
 #include <cstring>
-#include <cerrno>
-#include <cstdio>
 #include <unistd.h>
 #include "client_SocketActive.h"
+#include "common_SocketPeerException.h"
 
 client_SocketActive::client_SocketActive(): common_SocketPeer(-1) {
 }
@@ -17,7 +16,7 @@ void client_SocketActive::connect(const char* hostName, const char* service) {
   hints.ai_flags = 0;
   int errcheck = getaddrinfo(hostName, service, & hints, & result);
   if (errcheck != 0) {
-    printf("Error in getaddrinfo: %s\n", gai_strerror(errcheck));
+    throw common_SocketPeerException("Imposible establecer conexion");
   }
   fd = getConnection(result);
   freeaddrinfo(result);
@@ -30,11 +29,10 @@ int client_SocketActive::getConnection(struct addrinfo *result) {
   for (ptr = result; ptr != nullptr && !connected; ptr = ptr -> ai_next) {
     aFd = socket(ptr -> ai_family, ptr -> ai_socktype, ptr -> ai_protocol);
     if (aFd == -1) {
-      printf("Error: %s\n", strerror(errno));
+      throw common_SocketPeerException("FD Invalido");
     } else{
       int errcheck = ::connect(aFd, ptr -> ai_addr, ptr -> ai_addrlen);
       if (errcheck == -1) {
-        printf("Error: %s\n", strerror(errno));
         ::close(aFd);
       }
       connected = (aFd != -1);

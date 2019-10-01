@@ -28,3 +28,6 @@ server_Command* server_MapOfCommands::find(const std::string& commandCode) {
     return  iterator -> second;
   }
 }
+
+server_MapOfCommands::~server_MapOfCommands() {
+}

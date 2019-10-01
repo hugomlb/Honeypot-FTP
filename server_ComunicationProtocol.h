@@ -21,6 +21,8 @@ class server_ComunicationProtocol {
         server_User* user);
 
     void kill();
+
+    ~server_ComunicationProtocol();
 };
 
 

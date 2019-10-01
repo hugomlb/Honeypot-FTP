@@ -24,3 +24,6 @@ std::string server_ServerConfiguration::getValueOf(const std::string& key) {
   }
 }
 
+server_ServerConfiguration::~server_ServerConfiguration() {
+}
+

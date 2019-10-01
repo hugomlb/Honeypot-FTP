@@ -6,7 +6,6 @@
 #include "server_ClientProxy.h"
 #include "server_SocketPassiveException.h"
 
-
 server_Server::server_Server(const char* aService, const char*
     configurationFile, server_SocketPassive* aSocketPassive):
     configuration(configurationFile) {

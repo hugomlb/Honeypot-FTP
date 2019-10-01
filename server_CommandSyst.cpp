@@ -14,3 +14,6 @@ void server_CommandSyst::execute(std::string argument, server_User *user,
     askForLogin(socketPeer);
   }
 }
+
+server_CommandSyst::~server_CommandSyst() {
+}

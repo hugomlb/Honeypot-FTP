@@ -10,3 +10,6 @@ void server_CommandUser::execute(std::string argument, server_User *user,
   user -> enterUserName(argument);
   sendMessage("331 " + passRequired, socketPeer);
 }
+
+server_CommandUser::~server_CommandUser() {
+}

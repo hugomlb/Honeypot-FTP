@@ -11,6 +11,8 @@ class server_ServerConfiguration {
     explicit server_ServerConfiguration(const char* fileName);
 
     std::string getValueOf(const std::string& key);
+
+    ~server_ServerConfiguration();
 };
 
 

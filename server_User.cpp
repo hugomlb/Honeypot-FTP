@@ -39,3 +39,6 @@ void server_User::enterUserName(const std::string &aUserName) {
 void server_User::lastCommandWas(const std::string& aCommandCode) {
   wasLastCommandUser = aCommandCode == "USER";
 }
+
+server_User::~server_User() {
+}

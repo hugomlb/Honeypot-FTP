@@ -35,6 +35,8 @@ class server_MapOfCommands {
                          server_ServerConfiguration* configuration);
 
     server_Command* find(const std::string& commandCode);
+
+    ~server_MapOfCommands();
 };
 
 #endif

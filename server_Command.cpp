@@ -13,3 +13,6 @@ void server_Command::sendMessage(const std::string& aMessage,
     common_SocketPeer* socketPeer) {
   socketPeer -> send( aMessage + "\n");
 }
+
+server_Command::~server_Command() {
+}

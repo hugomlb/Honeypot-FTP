@@ -24,3 +24,6 @@ void server_CommandPass::sendLogState(int logState,
     sendMessage("530 " + loginFailed, socketPeer);
   }
 }
+
+server_CommandPass::~server_CommandPass() {
+}

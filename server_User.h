@@ -21,6 +21,8 @@ class server_User {
     void lastCommandWas(const std::string& aCommandCode);
 
     bool isLogged();
+
+    ~server_User();
 };
 
 
