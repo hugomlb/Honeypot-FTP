@@ -14,7 +14,7 @@ class server_ClientProxy: public common_Thread {
     server_User user;
     std::string lastCommandCode;
     server_MapOfCommands commands;
-    server_ComunicationProtocol clientProxy;
+    server_ComunicationProtocol comunicationProtocol;
 
     server_Command* findCommand(std::string comandCode);
   public:

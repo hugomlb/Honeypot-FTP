@@ -9,15 +9,21 @@
 #include "server_SocketPassive.h"
 #include "common_Thread.h"
 #include "server_ClientProxyVector.h"
+#include "server_CommandWelcome.h"
+#include "server_ClientProxy.h"
+#include <vector>
 
 class server_Server: public common_Thread {
   private:
     server_ServerConfiguration configuration;
     server_ProtectedDirectorySet directories;
     server_SocketPassive* socketPassive;
-    std::atomic<bool> keepRunning{};
-    server_CommandWelcome welcome;
-    server_ClientProxyVector clients;
+    std::atomic<bool> keepRunning;
+    std::vector<server_ClientProxy*> clients;
+
+    void killAll();
+
+    void clean();
 
   public:
     explicit server_Server(const char* aService, const char* configurationFile,
