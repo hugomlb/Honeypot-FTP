@@ -1,12 +1,12 @@
 #include "server_MapOfCommands.h"
 #include "server_CommandInvalid.h"
 
-server_MapOfCommands::server_MapOfCommands(server_User *aUser, server_ProtectedDirectorySet *directories,
-    server_ServerConfiguration* config): list(directories, aUser, config),
-    make(directories, aUser, config), remove(directories, aUser, config),
-    user(aUser, config), pass(aUser, config), syst(aUser, config),
-    currentDirectory(aUser, config), quit(config), invalid(config),
-    help(aUser, config) {
+server_MapOfCommands::server_MapOfCommands(server_ProtectedDirectorySet *directories,
+    server_ServerConfiguration* config): list(directories, config),
+    make(directories, config), remove(directories, config),
+    user(config), pass(config), syst(config),
+    currentDirectory(config), quit(config), invalid(config),
+    help(config) {
   commandMap["LIST"] = &list;
   commandMap["QUIT"] = &quit;
   commandMap["MKD"] = &make;

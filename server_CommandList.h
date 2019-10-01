@@ -10,15 +10,14 @@
 class server_CommandList: public server_Command {
   private:
     server_ProtectedDirectorySet* directories;
-    server_User* user;
     std::string listBegin;
     std::string listEnd;
-    void list(common_SocketPeer* socketPeer);
   public:
-    explicit server_CommandList(server_ProtectedDirectorySet* directorySet, server_User* aUser,
-                                server_ServerConfiguration* configuration);
+    explicit server_CommandList(server_ProtectedDirectorySet* directorySet,
+        server_ServerConfiguration* configuration);
 
-    void execute(std::string argument, common_SocketPeer* socketPeer) override;
+    void execute(std::string argument, server_User *user,
+                 common_SocketPeer* socketPeer) override;
 };
 
 

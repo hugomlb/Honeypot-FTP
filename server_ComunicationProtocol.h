@@ -16,7 +16,7 @@ class server_ComunicationProtocol {
 
     void decode(std::string command, std::string* comandCode, std::string* argument);
 
-    void execute(server_Command* command, std::string argument);
+    void execute(server_Command* command, std::string argument, server_User* user);
 
     void kill();
 };

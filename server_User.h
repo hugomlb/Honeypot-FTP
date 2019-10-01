@@ -2,7 +2,6 @@
 #define _SERVER_USER_H_
 
 #include <string>
-#include "server_Command.h"
 #include "server_ServerConfiguration.h"
 
 class server_User {
@@ -21,7 +20,7 @@ class server_User {
 
     void lastCommandWas(const std::string& aCommandCode);
 
-    bool isLogged(server_Command* aCommand, common_SocketPeer* socketPeer);
+    bool isLogged();
 };
 
 

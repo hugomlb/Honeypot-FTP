@@ -2,14 +2,16 @@
 #include "common_SocketPeer.h"
 
 
-server_CommandHelp::server_CommandHelp(server_User* aUser,
-    server_ServerConfiguration* configuration): server_Command(configuration) {
+server_CommandHelp::server_CommandHelp(server_ServerConfiguration*
+    configuration): server_Command(configuration) {
   commands = configuration -> getValueOf("commands");
-  user = aUser;
 }
 
-void server_CommandHelp::execute(std::string argument, common_SocketPeer* socketPeer) {
-  if (user -> isLogged(this, socketPeer)) {
+void server_CommandHelp::execute(std::string argument, server_User* user,
+                                 common_SocketPeer* socketPeer) {
+  if (user -> isLogged()) {
     sendMessage("214 " + commands, socketPeer);
+  } else {
+    askForLogin(socketPeer);
   }
 }

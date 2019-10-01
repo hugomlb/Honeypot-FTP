@@ -28,7 +28,7 @@ void common_SocketPeer::send(std::string message) {
   while (iterator != message.end()) {
     operationState = ::send(fd, (void*) &currentChar, 1, MSG_NOSIGNAL);
     if (operationState == 0) {
-      throw common_SocketPeerException("Socket Closed");
+      throw common_SocketPeerException("Comunicacion Perdida");
     } else if (operationState == -1) {
       throw common_SocketPeerException("SOCKET CERRADO FORZOZAMENTE");
     }
@@ -43,7 +43,7 @@ void common_SocketPeer::receive(std::string *answer) {
   while (currentChar != '\n') {
     operationState = recv(fd, &currentChar, 1, 0);
     if (operationState == 0) {
-      throw common_SocketPeerException("Socket Closed");
+      throw common_SocketPeerException("Comunicacion Perdida");
     } else if (operationState == -1) {
       throw common_SocketPeerException("SOCKET CERRADO ABRUPTAMENTE");
     }

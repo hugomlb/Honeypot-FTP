@@ -7,13 +7,13 @@
 
 class server_CommandPWD: public server_Command {
   private:
-    server_User* user;
     std::string currentDirectoryMsg;
 
-    void currentDirectory(common_SocketPeer* socketPeer);
   public:
-    explicit server_CommandPWD(server_User* aUser, server_ServerConfiguration* configuration);
-    void execute(std::string argument, common_SocketPeer* socketPeer) override;
+    explicit server_CommandPWD(server_ServerConfiguration* configuration);
+
+    void execute(std::string argument, server_User *user,
+                 common_SocketPeer *socketPeer) override;
 };
 
 

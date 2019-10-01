@@ -18,12 +18,12 @@ server_Server::server_Server(const char* aService, const char* configurationFile
 void server_Server::run() {
   keepRunning = true;
   server_CommandWelcome welcome(&configuration);
-  server_CommandWelcome command(&configuration);
+  server_MapOfCommands commands(&directories, &configuration);
   try {
     while (keepRunning) {
       common_SocketPeer socketPeer = std::move(socketPassive -> acceptClient());
       if (keepRunning) {
-        clients.push_back(new server_ClientProxy(&configuration, &directories, std::move(socketPeer)));
+        clients.push_back(new server_ClientProxy(&configuration, &commands, std::move(socketPeer)));
         clients.back() -> welcomenClient(&welcome);
         clients.back() -> start();
       }

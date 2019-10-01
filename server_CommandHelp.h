@@ -9,12 +9,11 @@
 class server_CommandHelp: public server_Command {
   private:
     std::string commands;
-    server_User* user;
   public:
-    explicit server_CommandHelp(server_User* aUser,
-        server_ServerConfiguration* configuration);
+    explicit server_CommandHelp(server_ServerConfiguration* configuration);
 
-    void execute(std::string argument, common_SocketPeer* socketPeer) override;
+    void execute(std::string argument, server_User* user,
+                 common_SocketPeer* socketPeer) override;
 };
 
 

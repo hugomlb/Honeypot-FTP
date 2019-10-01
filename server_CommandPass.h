@@ -8,16 +8,16 @@
 
 class server_CommandPass: public server_Command {
   private:
-    server_User* user;
     std::string loginSuccess;
     std::string loginFailed;
 
     void sendLogState(int logState, common_SocketPeer* socketPeer);
 
   public:
-    explicit server_CommandPass(server_User* aUser, server_ServerConfiguration* configuration);
+    explicit server_CommandPass(server_ServerConfiguration* configuration);
 
-    void execute(std::string argument, common_SocketPeer* socketPeer) override;
+    void execute(std::string argument, server_User *user,
+                 common_SocketPeer *socketPeer) override;
 };
 
 #endif

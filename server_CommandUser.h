@@ -8,13 +8,13 @@
 
 class server_CommandUser: public server_Command {
   private:
-    server_User* user;
     std::string passRequired;
 
   public:
-    explicit server_CommandUser(server_User* aUser, server_ServerConfiguration* configuration);
+    explicit server_CommandUser(server_ServerConfiguration* configuration);
 
-    void execute(std::string argument, common_SocketPeer* socketPeer) override;
+    void execute(std::string argument, server_User *user,
+                 common_SocketPeer *socketPeer) override;
 };
 
 

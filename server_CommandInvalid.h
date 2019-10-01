@@ -10,7 +10,8 @@ class server_CommandInvalid : public server_Command {
   public:
     explicit server_CommandInvalid(server_ServerConfiguration* configuration);
 
-    void execute(std::string argument, common_SocketPeer* socketPeer) override;
+    void execute(std::string argument, server_User *user,
+                 common_SocketPeer* socketPeer) override;
 };
 
 #endif

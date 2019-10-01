@@ -3,28 +3,25 @@
 #include "server_CommandInvalid.h"
 #include "common_SocketPeer.h"
 
-server_CommandMKD::server_CommandMKD(server_ProtectedDirectorySet* directorySet, server_User* aUser,
-                                     server_ServerConfiguration* configuration): server_Command(configuration) {
+server_CommandMKD::server_CommandMKD(server_ProtectedDirectorySet* directorySet,
+    server_ServerConfiguration* configuration): server_Command(configuration) {
   directories = directorySet;
-  user = aUser;
   mkdSuccess = configuration -> getValueOf("mkdSuccess");
   mkdFailed = configuration -> getValueOf("mkdFailed");
 }
 
-void server_CommandMKD::execute(std::string argument, common_SocketPeer* socketPeer) {
-  if (!argument.empty()) {
-    makeDirectory(argument, socketPeer);
-  }
-}
-
-void server_CommandMKD::makeDirectory(const std::string& aDirectoryName, common_SocketPeer* socketPeer) {
-  if (user -> isLogged(this, socketPeer)) {
+void server_CommandMKD::execute(std::string argument, server_User *user,
+                                common_SocketPeer *socketPeer) {
+  if (user -> isLogged()) {
     try {
-      directories -> addDirectory(aDirectoryName);
+      directories -> addDirectory(argument);
       std::string commandCode = "257 ";
-      sendMessage(commandCode + '"' + aDirectoryName + '"' + " " + mkdSuccess, socketPeer);
+      sendMessage(commandCode + '"' + argument + '"' + " " +
+      mkdSuccess, socketPeer);
     } catch (server_DirectorySetException &e) {
       sendMessage("550 " + mkdFailed, socketPeer);
     }
+  } else {
+    askForLogin(socketPeer);
   }
 }

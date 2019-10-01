@@ -11,9 +11,10 @@ class server_CommandSyst: public server_Command {
 
     void systemInformation(common_SocketPeer* socketPeer);
   public:
-    explicit server_CommandSyst(server_User* aUser, server_ServerConfiguration* configuration);
+    explicit server_CommandSyst(server_ServerConfiguration* configuration);
 
-    void execute(std::string argument, common_SocketPeer* socketPeer) override;
+    void execute(std::string argument, server_User *user,
+                 common_SocketPeer *socketPeer) override;
 };
 
 

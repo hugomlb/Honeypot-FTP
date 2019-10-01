@@ -31,7 +31,7 @@ class server_MapOfCommands {
     server_CommandHelp help;
 
   public:
-    server_MapOfCommands(server_User* aUser, server_ProtectedDirectorySet* directorySet,
+    server_MapOfCommands(server_ProtectedDirectorySet* directorySet,
                          server_ServerConfiguration* configuration);
 
     server_Command* find(const std::string& commandCode);

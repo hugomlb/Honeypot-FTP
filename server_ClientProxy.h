@@ -13,13 +13,15 @@ class server_ClientProxy: public server_Thread {
     std::atomic<bool> isTalking{};
     server_User user;
     std::string lastCommandCode;
-    server_MapOfCommands commands;
+    server_MapOfCommands* commands;
     server_ComunicationProtocol comunicationProtocol;
 
     server_Command* findCommand(std::string comandCode);
+
+    void communicate();
   public:
     server_ClientProxy(server_ServerConfiguration* configuration,
-        server_ProtectedDirectorySet* directories, common_SocketPeer socketPeer);
+        server_MapOfCommands* mapOfCommands, common_SocketPeer socketPeer);
 
     void welcomenClient(server_CommandWelcome* welcome);
 
