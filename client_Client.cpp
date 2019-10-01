@@ -1,24 +1,27 @@
 #include "client_Client.h"
-#include "client_ServerProxy.h"
 #include "common_SocketPeerException.h"
 #include <iostream>
 
-client_Client::client_Client() {
+client_Client::client_Client(const char* hostName, const char* service):
+  serverProxy(hostName, service) {
 }
 
-void client_Client::run(const char* hostName, const char* service) {
-  client_ServerProxy server(hostName, service);
-  std::string command = " ";
+void client_Client::run() {
   try {
-    while (command != "QUIT" ) {
-      getline(std::cin, command);
-      if (!std::cin.eof()){
-        server.executeCommand(command);
-      } else {
-        command = "QUIT";
-      }
-    }
+    communicate();
   } catch (common_SocketPeerException &e){
+  }
+}
+
+void client_Client::communicate() {
+  std::string command;
+  while (command != "QUIT" ) {
+    getline(std::cin, command);
+    if (!std::cin.eof()){
+      serverProxy.executeCommand(command);
+    } else {
+      command = "QUIT";
+    }
   }
 }
 

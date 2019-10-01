@@ -6,15 +6,16 @@
 #include <netdb.h>
 #include "common_SocketPeer.h"
 
-class SocketActive: public common_SocketPeer {
+class client_SocketActive: public common_SocketPeer {
   private:
     static int getConnection(struct addrinfo* ptr);
+
   public:
-    SocketActive();
+    client_SocketActive();
 
     void connect(const char* hostName, const char* service);
 
-    ~SocketActive();
+    ~client_SocketActive();
 };
 
 

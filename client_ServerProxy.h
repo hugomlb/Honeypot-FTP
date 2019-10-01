@@ -3,16 +3,18 @@
 
 #include "server_ComunicationProtocol.h"
 #include "client_SocketActive.h"
+#include "client_ClientCommunicationProtocol.h"
 
 class client_ServerProxy {
   private:
-    SocketActive socketActive;
+    client_ClientCommunicationProtocol communicationProtocol;
 
-    std::string getAnswer();
   public:
     client_ServerProxy(const char* hostName, const char* service);
 
     void executeCommand(std::string aCommand);
+
+    ~client_ServerProxy();
 };
 
 

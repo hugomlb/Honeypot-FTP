@@ -1,9 +1,9 @@
 #include "server_ProtectedDirectorySet.h"
 #include "server_DirectorySetException.h"
-#include "common_Lock.h"
+#include "server_Lock.h"
 
 void server_ProtectedDirectorySet::addDirectory(const std::string& directoryName) {
-  common_Lock lock(mutex);
+  server_Lock lock(mutex);
   if (isItDuplicate(directoryName)) {
     throw  server_DirectorySetException("Add failed");
   }
@@ -11,7 +11,7 @@ void server_ProtectedDirectorySet::addDirectory(const std::string& directoryName
 }
 
 void server_ProtectedDirectorySet::removeDirectory(const std::string& directoryName) {
-  common_Lock lock(mutex);
+  server_Lock lock(mutex);
   if (!isItDuplicate(directoryName)) {
     throw  server_DirectorySetException("Remove failed");
   }
@@ -28,7 +28,7 @@ bool server_ProtectedDirectorySet::isItDuplicate(const std::string& directoryNam
 }
 
 std::list<std::string> server_ProtectedDirectorySet::getDirectoryList() {
-  common_Lock lock(mutex);
+  server_Lock lock(mutex);
   std::list<std::string> listOfDirectories;
   for (iterator = directories.begin(); iterator != directories.end(); iterator++) {
     listOfDirectories.push_back(*iterator);

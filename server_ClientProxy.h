@@ -2,13 +2,13 @@
 #define _SERVER_CONNECTED_CLIENT_H_
 
 #include <atomic>
-#include "common_Thread.h"
+#include "server_Thread.h"
 #include "server_User.h"
 #include "server_MapOfCommands.h"
 #include "server_CommandWelcome.h"
 #include "server_ComunicationProtocol.h"
 
-class server_ClientProxy: public common_Thread {
+class server_ClientProxy: public server_Thread {
   private:
     std::atomic<bool> isTalking{};
     server_User user;

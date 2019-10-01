@@ -5,10 +5,10 @@
 #include <unistd.h>
 #include "client_SocketActive.h"
 
-SocketActive::SocketActive(): common_SocketPeer(-1) {
+client_SocketActive::client_SocketActive(): common_SocketPeer(-1) {
 }
 
-void SocketActive::connect(const char* hostName, const char* service) {
+void client_SocketActive::connect(const char* hostName, const char* service) {
   struct addrinfo hints;
   struct addrinfo *result;
   memset(&hints, 0, sizeof(struct addrinfo));
@@ -23,7 +23,7 @@ void SocketActive::connect(const char* hostName, const char* service) {
   freeaddrinfo(result);
 }
 
-int SocketActive::getConnection(struct addrinfo *result) {
+int client_SocketActive::getConnection(struct addrinfo *result) {
   int aFd = -1;
   bool connected = false;
   struct addrinfo *ptr;
@@ -43,5 +43,5 @@ int SocketActive::getConnection(struct addrinfo *result) {
   return aFd;
 }
 
-SocketActive::~SocketActive() {
+client_SocketActive::~client_SocketActive() {
 }

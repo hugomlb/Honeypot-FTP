@@ -4,8 +4,11 @@
 
 int main(int argc, char const *argv[]) {
   if (argc == VALID_AMOUNT_OF_PARAMETERS) {
-    client_Client client;
-    client.run(argv[1], argv[2]);
+    try {
+      client_Client client(argv[1], argv[2]);
+      client.run();
+    } catch (...) {
+    }
   }
   return 0;
 }
