@@ -5,12 +5,12 @@
 #include "server_Command.h"
 #include <string>
 
-class server_ComunicationProtocol {
+class server_ServerComunicationProtocol {
   private:
     common_SocketPeer socketPeer;
 
   public:
-    explicit server_ComunicationProtocol(common_SocketPeer aSocketPeer);
+    explicit server_ServerComunicationProtocol(common_SocketPeer aSocketPeer);
 
     void receiveMessage(std::string* received);
 
@@ -22,7 +22,7 @@ class server_ComunicationProtocol {
 
     void kill();
 
-    ~server_ComunicationProtocol();
+    ~server_ServerComunicationProtocol();
 };
 
 

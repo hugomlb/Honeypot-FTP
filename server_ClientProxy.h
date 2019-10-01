@@ -6,7 +6,7 @@
 #include "server_User.h"
 #include "server_MapOfCommands.h"
 #include "server_CommandWelcome.h"
-#include "server_ComunicationProtocol.h"
+#include "server_ServerComunicationProtocol.h"
 
 class server_ClientProxy: public server_Thread {
   private:
@@ -14,7 +14,7 @@ class server_ClientProxy: public server_Thread {
     server_User user;
     std::string lastCommandCode;
     server_MapOfCommands* commands;
-    server_ComunicationProtocol comunicationProtocol;
+    server_ServerComunicationProtocol comunicationProtocol;
 
     server_Command* findCommand(std::string comandCode);
 

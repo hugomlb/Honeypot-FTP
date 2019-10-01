@@ -1,7 +1,7 @@
 #ifndef _SERVER_PROXY_H_
 #define _SERVER_PROXY_H_
 
-#include "server_ComunicationProtocol.h"
+#include "server_ServerComunicationProtocol.h"
 #include "client_SocketActive.h"
 #include "client_ClientCommunicationProtocol.h"
 
