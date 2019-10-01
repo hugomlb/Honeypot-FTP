@@ -1,5 +1,5 @@
 #include "server_CommandRMD.h"
-#include "server_DirectorySetException.h"
+#include "server_ProtectedDirectorySetException.h"
 #include "server_CommandInvalid.h"
 #include "common_SocketPeer.h"
 
@@ -17,7 +17,7 @@ void server_CommandRMD::execute(std::string argument, server_User *user,
       directories -> removeDirectory(argument);
       std::string commandCode = "250 ";
       sendMessage(commandCode + '"' + argument + '"' + " " + rmdSuccess, socketPeer);
-    } catch (server_DirectorySetException &e) {
+    } catch (server_ProtectedDirectorySetException &e) {
       sendMessage("550 " + rmdFailed, socketPeer);
     }
   } else {

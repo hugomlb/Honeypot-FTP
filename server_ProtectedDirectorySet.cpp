@@ -1,11 +1,11 @@
 #include "server_ProtectedDirectorySet.h"
-#include "server_DirectorySetException.h"
+#include "server_ProtectedDirectorySetException.h"
 #include "server_Lock.h"
 
 void server_ProtectedDirectorySet::addDirectory(const std::string& directoryName) {
   server_Lock lock(mutex);
   if (isItDuplicate(directoryName)) {
-    throw  server_DirectorySetException("Add failed");
+    throw  server_ProtectedDirectorySetException("Add failed");
   }
   directories.insert(directoryName);
 }
@@ -13,7 +13,7 @@ void server_ProtectedDirectorySet::addDirectory(const std::string& directoryName
 void server_ProtectedDirectorySet::removeDirectory(const std::string& directoryName) {
   server_Lock lock(mutex);
   if (!isItDuplicate(directoryName)) {
-    throw  server_DirectorySetException("Remove failed");
+    throw  server_ProtectedDirectorySetException("Remove failed");
   }
   directories.erase(directoryName);
 }

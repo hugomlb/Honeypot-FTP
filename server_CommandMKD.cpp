@@ -1,5 +1,5 @@
 #include "server_CommandMKD.h"
-#include "server_DirectorySetException.h"
+#include "server_ProtectedDirectorySetException.h"
 #include "server_CommandInvalid.h"
 #include "common_SocketPeer.h"
 
@@ -18,7 +18,7 @@ void server_CommandMKD::execute(std::string argument, server_User *user,
       std::string commandCode = "257 ";
       sendMessage(commandCode + '"' + argument + '"' + " " +
       mkdSuccess, socketPeer);
-    } catch (server_DirectorySetException &e) {
+    } catch (server_ProtectedDirectorySetException &e) {
       sendMessage("550 " + mkdFailed, socketPeer);
     }
   } else {

@@ -3,17 +3,20 @@
 #define VALID_AMOUNT_OF_PARAMETERS 3
 
 int main(int argc, char const *argv[]) {
-  if (argc == VALID_AMOUNT_OF_PARAMETERS) {
-    server_SocketPassive socketPassive;
-    server_Server server(argv[1], argv[2], &socketPassive);
-    server.start();
-    std::string quit = " ";
-    while (quit != "q") {
-      getline(std::cin, quit);
+  try {
+    if (argc == VALID_AMOUNT_OF_PARAMETERS) {
+      server_SocketPassive socketPassive;
+      server_Server server(argv[1], argv[2], &socketPassive);
+      server.start();
+      std::string quit = " ";
+      while (quit != "q") {
+        getline(std::cin, quit);
+      }
+      socketPassive.close();
+      server.stop();
+      server.join();
     }
-    socketPassive.close();
-    server.stop();
-    server.join();
+  } catch (...) {
   }
   return 0;
 }
